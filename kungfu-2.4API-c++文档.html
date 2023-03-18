@@ -1,0 +1,1925 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>kungfu-2.4API-c++文档</title><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857143; overflow-x: hidden; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; tab-size: 4; background-position: inherit; background-repeat: inherit; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; word-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) { 
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font-family: inherit; font-size: inherit; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right-width: 0px; background-color: inherit; }
+.CodeMirror-linenumber { }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; position: relative !important; background-position: inherit; background-repeat: inherit; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; background-position: 0px 0px; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print { 
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background-color: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) { 
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background-color: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; }
+a.md-print-anchor { white-space: pre !important; border: none !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; text-shadow: initial !important; background-position: 0px 0px !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom-width: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+svg[id^="mermaidChart"] { line-height: 1em; }
+mark { background-color: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
+@media print { 
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; background-position: inherit; background-repeat: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right-width: 1px; border-right-style: solid; border-right-color: rgb(221, 221, 221); background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; white-space: nowrap; background-position: inherit; background-repeat: inherit; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; background-position: inherit; background-repeat: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; background-position: inherit; background-repeat: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 30px; z-index: 3; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; border: none !important; background-position: 0px 0px !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; border-width: 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; word-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; background-position: 0px 0px; }
+.CodeMirror-wrap pre { word-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right-width: 30px; border-right-style: solid; border-right-color: transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right-style: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; inset: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right-style: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background-color: rgba(255, 255, 0, 0.4); }
+@media print { 
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
+/* Flowchart variables */
+/* Sequence Diagram variables */
+/* Gantt chart variables */
+/* state colors */
+.label {
+  
+  color: #333; }
+
+.label text {
+  fill: #333; }
+
+.node rect,
+.node circle,
+.node ellipse,
+.node polygon {
+  fill: #BDD5EA;
+  stroke: #9370DB;
+  stroke-width: 1px; }
+
+.node .label {
+  text-align: center; }
+
+.node.clickable {
+  cursor: pointer; }
+
+.arrowheadPath {
+  fill: lightgrey; }
+
+.edgePath .path {
+  stroke: lightgrey;
+  stroke-width: 1.5px; }
+
+.edgeLabel {
+  background-color: #e8e8e8;
+  text-align: center; }
+
+.cluster rect {
+  fill: #6D6D65;
+  stroke: rgba(255, 255, 255, 0.25);
+  stroke-width: 1px; }
+
+.cluster text {
+  fill: #F9FFFE; }
+
+div.mermaidTooltip {
+  position: absolute;
+  text-align: center;
+  max-width: 200px;
+  padding: 2px;
+  
+  font-size: 12px;
+  background: #6D6D65;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 100; }
+
+.actor {
+  stroke: #81B1DB;
+  fill: #BDD5EA; }
+
+text.actor {
+  fill: black;
+  stroke: none; }
+
+.actor-line {
+  stroke: lightgrey; }
+
+.messageLine0 {
+  stroke-width: 1.5;
+  stroke-dasharray: '2 2';
+  stroke: lightgrey; }
+
+.messageLine1 {
+  stroke-width: 1.5;
+  stroke-dasharray: '2 2';
+  stroke: lightgrey; }
+
+#arrowhead {
+  fill: lightgrey; }
+
+.sequenceNumber {
+  fill: white; }
+
+#sequencenumber {
+  fill: lightgrey; }
+
+#crosshead path {
+  fill: lightgrey !important;
+  stroke: lightgrey !important; }
+
+.messageText {
+  fill: lightgrey;
+  stroke: none; }
+
+.labelBox {
+  stroke: #81B1DB;
+  fill: #BDD5EA; }
+
+.labelText {
+  fill: #323D47;
+  stroke: none; }
+
+.loopText {
+  fill: lightgrey;
+  stroke: none; }
+
+.loopLine {
+  stroke-width: 2;
+  stroke-dasharray: '2 2';
+  stroke: #81B1DB; }
+
+.note {
+  stroke: rgba(255, 255, 255, 0.25);
+  fill: #fff5ad; }
+
+.noteText {
+  fill: black;
+  stroke: none;
+  
+  font-size: 14px; }
+
+.activation0 {
+  fill: #f4f4f4;
+  stroke: #666; }
+
+.activation1 {
+  fill: #f4f4f4;
+  stroke: #666; }
+
+.activation2 {
+  fill: #f4f4f4;
+  stroke: #666; }
+
+/** Section styling */
+.section {
+  stroke: none;
+  opacity: 0.2; }
+
+.section0 {
+  fill: rgba(255, 255, 255, 0.3); }
+
+.section2 {
+  fill: #EAE8B9; }
+
+.section1,
+.section3 {
+  fill: white;
+  opacity: 0.2; }
+
+.sectionTitle0 {
+  fill: #F9FFFE; }
+
+.sectionTitle1 {
+  fill: #F9FFFE; }
+
+.sectionTitle2 {
+  fill: #F9FFFE; }
+
+.sectionTitle3 {
+  fill: #F9FFFE; }
+
+.sectionTitle {
+  text-anchor: start;
+  font-size: 11px;
+  text-height: 14px;
+   }
+
+/* Grid and axis */
+.grid .tick {
+  stroke: lightgrey;
+  opacity: 0.3;
+  shape-rendering: crispEdges; }
+
+.grid path {
+  stroke-width: 0; }
+
+/* Today line */
+.today {
+  fill: none;
+  stroke: #DB5757;
+  stroke-width: 2px; }
+
+/* Task styling */
+/* Default task */
+.task {
+  stroke-width: 2; }
+
+.taskText {
+  text-anchor: middle;
+   }
+
+.taskText:not([font-size]) {
+  font-size: 11px; }
+
+.taskTextOutsideRight {
+  fill: #323D47;
+  text-anchor: start;
+  font-size: 11px;
+   }
+
+.taskTextOutsideLeft {
+  fill: #323D47;
+  text-anchor: end;
+  font-size: 11px; }
+
+/* Special case clickable */
+.task.clickable {
+  cursor: pointer; }
+
+.taskText.clickable {
+  cursor: pointer;
+  fill: #003163 !important;
+  font-weight: bold; }
+
+.taskTextOutsideLeft.clickable {
+  cursor: pointer;
+  fill: #003163 !important;
+  font-weight: bold; }
+
+.taskTextOutsideRight.clickable {
+  cursor: pointer;
+  fill: #003163 !important;
+  font-weight: bold; }
+
+/* Specific task settings for the sections*/
+.taskText0,
+.taskText1,
+.taskText2,
+.taskText3 {
+  fill: #323D47; }
+
+.task0,
+.task1,
+.task2,
+.task3 {
+  fill: #BDD5EA;
+  stroke: rgba(255, 255, 255, 0.5); }
+
+.taskTextOutside0,
+.taskTextOutside2 {
+  fill: lightgrey; }
+
+.taskTextOutside1,
+.taskTextOutside3 {
+  fill: lightgrey; }
+
+/* Active task */
+.active0,
+.active1,
+.active2,
+.active3 {
+  fill: #81B1DB;
+  stroke: rgba(255, 255, 255, 0.5); }
+
+.activeText0,
+.activeText1,
+.activeText2,
+.activeText3 {
+  fill: #323D47 !important; }
+
+/* Completed task */
+.done0,
+.done1,
+.done2,
+.done3 {
+  stroke: grey;
+  fill: lightgrey;
+  stroke-width: 2; }
+
+.doneText0,
+.doneText1,
+.doneText2,
+.doneText3 {
+  fill: #323D47 !important; }
+
+/* Tasks on the critical line */
+.crit0,
+.crit1,
+.crit2,
+.crit3 {
+  stroke: #E83737;
+  fill: #E83737;
+  stroke-width: 2; }
+
+.activeCrit0,
+.activeCrit1,
+.activeCrit2,
+.activeCrit3 {
+  stroke: #E83737;
+  fill: #81B1DB;
+  stroke-width: 2; }
+
+.doneCrit0,
+.doneCrit1,
+.doneCrit2,
+.doneCrit3 {
+  stroke: #E83737;
+  fill: lightgrey;
+  stroke-width: 2;
+  cursor: pointer;
+  shape-rendering: crispEdges; }
+
+.milestone {
+  transform: rotate(45deg) scale(0.8, 0.8); }
+
+.milestoneText {
+  font-style: italic; }
+
+.doneCritText0,
+.doneCritText1,
+.doneCritText2,
+.doneCritText3 {
+  fill: #323D47 !important; }
+
+.activeCritText0,
+.activeCritText1,
+.activeCritText2,
+.activeCritText3 {
+  fill: #323D47 !important; }
+
+.titleText {
+  text-anchor: middle;
+  font-size: 18px;
+  fill: #323D47;
+   }
+
+g.classGroup text {
+  fill: #9370DB;
+  stroke: none;
+  
+  font-size: 10px; }
+  g.classGroup text .title {
+    font-weight: bolder; }
+
+g.classGroup rect {
+  fill: #BDD5EA;
+  stroke: #9370DB; }
+
+g.classGroup line {
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+.classLabel .box {
+  stroke: none;
+  stroke-width: 0;
+  fill: #BDD5EA;
+  opacity: 0.5; }
+
+.classLabel .label {
+  fill: #9370DB;
+  font-size: 10px; }
+
+.relation {
+  stroke: #9370DB;
+  stroke-width: 1;
+  fill: none; }
+
+#compositionStart {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#compositionEnd {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#aggregationStart {
+  fill: #BDD5EA;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#aggregationEnd {
+  fill: #BDD5EA;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#dependencyStart {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#dependencyEnd {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#extensionStart {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#extensionEnd {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+.commit-id,
+.commit-msg,
+.branch-label {
+  fill: lightgrey;
+  color: lightgrey;
+   }
+
+.pieTitleText {
+  text-anchor: middle;
+  font-size: 25px;
+  fill: #eee;
+}
+
+g.stateGroup text {
+  stroke: none;
+  font-size: 10px;
+}
+
+g.stateGroup circle {
+  fill: white !important;
+  stroke: white !important;
+}
+
+g.stateGroup .state-title {
+  font-weight: bolder;
+  fill: black; }
+
+g.stateGroup rect {
+  fill: #ececff;
+  stroke: #9370DB; }
+
+g.stateGroup line {
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+.transition {
+  stroke: #9370DB;
+  stroke-width: 1;
+  fill: none; }
+
+.stateGroup .composit {
+  fill: #555;
+  border-bottom: 1px; }
+
+.state-note {
+  stroke: rgba(255, 255, 255, 0.25);
+  fill: #fff5ad; }
+  .state-note text {
+    fill: black;
+    stroke: none;
+    font-size: 10px; }
+
+.stateLabel .box {
+  stroke: none;
+  stroke-width: 0;
+  fill: #BDD5EA;
+  opacity: 0.5; }
+
+.stateLabel text {
+  fill: black;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.cluster-label {
+  color:black;
+}
+
+.statediagram-cluster rect {
+  fill: #BDD5EA;
+  stroke: #9370DB; 
+  stroke-width: 1px;
+}
+.statediagram-cluster rect.outer {
+  rx: 5px;
+  ry: 5px;
+}
+.statediagram-state .divider {
+  stroke: #9370DB; 
+}
+
+.statediagram-state .title-state {
+  rx: 5px;
+  ry: 5px;
+}
+.statediagram-cluster.statediagram-cluster .inner {
+  fill: white;
+}
+.statediagram-cluster.statediagram-cluster-alt .inner {
+  fill: #e0e0e0;
+}
+
+.statediagram-cluster .inner {
+  rx:0;
+  ry:0;
+}
+
+.statediagram-state rect.basic {
+  rx: 5px;
+  ry: 5px;
+}
+.statediagram-state rect.divider {
+  stroke-dasharray: 10,10;
+  fill: #efefef;
+}
+
+.note-edge {
+  stroke-dasharray: 5;
+}
+
+.statediagram-note rect {
+  stroke: var(--cluster-border);
+  fill: #fff5ad;
+  stroke-width: 1px;
+  rx: 0;
+  ry: 0;
+}
+
+.node circle.state-start {
+  fill: black;
+  stroke: black;
+}
+.node circle.state-end {
+  fill: black;
+  stroke: white;
+  stroke-width: 1.5
+}
+#statediagram-barbEnd {
+  fill: #9370DB; 
+}
+
+/* CSS Document */
+
+/** code highlight */
+
+.cm-s-inner .cm-variable,
+.cm-s-inner .cm-operator,
+.cm-s-inner .cm-property {
+    color: #b8bfc6;
+}
+
+.cm-s-inner .cm-keyword {
+    color: #C88FD0;
+}
+
+.cm-s-inner .cm-tag {
+    color: #7DF46A;
+}
+
+.cm-s-inner .cm-attribute {
+    color: #7575E4;
+}
+
+.CodeMirror div.CodeMirror-cursor {
+    border-left: 1px solid #b8bfc6;
+    z-index: 3;
+}
+
+.cm-s-inner .cm-string {
+    color: #D26B6B;
+}
+
+.cm-s-inner .cm-comment,
+.cm-s-inner.cm-comment {
+    color: #DA924A;
+}
+
+.cm-s-inner .cm-header,
+.cm-s-inner .cm-def,
+.cm-s-inner.cm-header,
+.cm-s-inner.cm-def {
+    color: #8d8df0;
+}
+
+.cm-s-inner .cm-quote,
+.cm-s-inner.cm-quote {
+    color: #57ac57;
+}
+
+.cm-s-inner .cm-hr {
+    color: #d8d5d5;
+}
+
+.cm-s-inner .cm-link {
+    color: #d3d3ef;
+}
+
+.cm-s-inner .cm-negative {
+    color: #d95050;
+}
+
+.cm-s-inner .cm-positive {
+    color: #50e650;
+}
+
+.cm-s-inner .cm-string-2 {
+    color: #f50;
+}
+
+.cm-s-inner .cm-meta,
+.cm-s-inner .cm-qualifier {
+    color: #b7b3b3;
+}
+
+.cm-s-inner .cm-builtin {
+    color: #f3b3f8;
+}
+
+.cm-s-inner .cm-bracket {
+    color: #997;
+}
+
+.cm-s-inner .cm-atom,
+.cm-s-inner.cm-atom {
+    color: #84B6CB;
+}
+
+.cm-s-inner .cm-number {
+    color: #64AB8F;
+}
+
+.cm-s-inner .cm-variable {
+    color: #b8bfc6;
+}
+
+.cm-s-inner .cm-variable-2 {
+    color: #9FBAD5;
+}
+
+.cm-s-inner .cm-variable-3 {
+    color: #1cc685;
+}
+
+.CodeMirror-selectedtext,
+.CodeMirror-selected {
+    background: #4a89dc;
+    color: #fff !important;
+    text-shadow: none;
+}
+
+.CodeMirror-gutters {
+    border-right: none;
+}
+
+/* CSS Document */
+
+/** markdown source **/
+.cm-s-typora-default .cm-header, 
+.cm-s-typora-default .cm-property
+{
+    color: #cebcca;
+}
+
+.CodeMirror.cm-s-typora-default div.CodeMirror-cursor{
+    border-left: 3px solid #b8bfc6;
+}
+
+.cm-s-typora-default .cm-comment {
+    color: #9FB1FF;
+}
+
+.cm-s-typora-default .cm-string {
+    color: #A7A7D9
+}
+
+.cm-s-typora-default .cm-atom, .cm-s-typora-default .cm-number {
+    color: #848695;
+    font-style: italic;
+}
+
+.cm-s-typora-default .cm-link {
+    color: #95B94B;
+}
+
+.cm-s-typora-default .CodeMirror-activeline-background {
+    background: rgba(51, 51, 51, 0.72);
+}
+
+.cm-s-typora-default .cm-comment, .cm-s-typora-default .cm-code {
+	color: #8aa1e1;
+}@import "";
+@import "";
+@import "";
+
+:root {
+    --bg-color:  #363B40;
+    --side-bar-bg-color: #2E3033;
+    --text-color: #b8bfc6;
+
+    --select-text-bg-color:#4a89dc;
+
+    --item-hover-bg-color: #0a0d16;
+    --control-text-color: #b7b7b7;
+    --control-text-hover-color: #eee;
+    --window-border: 1px solid #555;
+
+    --active-file-bg-color: rgb(34, 34, 34);
+    --active-file-border-color: #8d8df0;
+
+    --primary-color: #a3d5fe;
+
+    --active-file-text-color: white;
+    --item-hover-bg-color: #70717d;
+    --item-hover-text-color: white;
+    --primary-color: #6dc1e7;
+
+    --rawblock-edit-panel-bd: #333;
+
+    --search-select-bg-color: #428bca;
+}
+
+html {
+    font-size: 16px;
+}
+
+html,
+body {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    background: #363B40;
+    background: var(--bg-color);
+    fill: currentColor;
+    line-height: 1.625rem;
+}
+
+#write {
+    max-width: 914px;
+}
+
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+html,
+body,
+button,
+input,
+select,
+textarea,
+div.code-tooltip-content {
+    color: #b8bfc6;
+    border-color: transparent;
+}
+
+div.code-tooltip,
+.md-hover-tip .md-arrow:after {
+    background: #333;
+}
+
+.popover.bottom > .arrow:after {
+    border-bottom-color: #333;
+}
+
+html,
+body,
+button,
+input,
+select,
+textarea {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+hr {
+    height: 2px;
+    border: 0;
+    margin: 24px 0 !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Lucida Grande", "Corbel", sans-serif;
+    font-weight: normal;
+    clear: both;
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+    margin: 0;
+    padding: 0;
+    color: #DEDEDE
+}
+
+h1 {
+    font-size: 2.5rem;
+    /* 36px */
+    line-height: 2.75rem;
+    /* 40px */
+    margin-bottom: 1.5rem;
+    /* 24px */
+    letter-spacing: -1.5px;
+}
+
+h2 {
+    font-size: 1.63rem;
+    /* 24px */
+    line-height: 1.875rem;
+    /* 30px */
+    margin-bottom: 1.5rem;
+    /* 24px */
+    letter-spacing: -1px;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 1.17rem;
+    /* 18px */
+    line-height: 1.5rem;
+    /* 24px */
+    margin-bottom: 1.5rem;
+    /* 24px */
+    letter-spacing: -1px;
+    font-weight: bold;
+}
+
+h4 {
+    font-size: 1.12rem;
+    /* 16px */
+    line-height: 1.375rem;
+    /* 22px */
+    margin-bottom: 1.5rem;
+    /* 24px */
+    color: white;
+}
+
+h5 {
+    font-size: 0.97rem;
+    /* 16px */
+    line-height: 1.25rem;
+    /* 22px */
+    margin-bottom: 1.5rem;
+    /* 24px */
+    font-weight: bold;
+}
+
+h6 {
+    font-size: 0.93rem;
+    /* 16px */
+    line-height: 1rem;
+    /* 16px */
+    margin-bottom: 0.75rem;
+    color: white;
+}
+
+@media (min-width: 980px) {
+    h3.md-focus:before,
+    h4.md-focus:before,
+    h5.md-focus:before,
+    h6.md-focus:before {
+        color: #ddd;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        position: absolute;
+        left: -1.642857143rem;
+        top: .357142857rem;
+        float: left;
+        font-size: 9px;
+        padding-left: 2px;
+        padding-right: 2px;
+        vertical-align: bottom;
+        font-weight: normal;
+        line-height: normal;
+    }
+
+    h3.md-focus:before {
+        content: 'h3';
+    }
+
+    h4.md-focus:before {
+        content: 'h4';
+    }
+
+    h5.md-focus:before {
+        content: 'h5';
+        top: 0px;
+    }
+
+    h6.md-focus:before {
+        content: 'h6';
+        top: 0px;
+    }
+}
+
+a {
+    text-decoration: none;
+    outline: 0;
+}
+
+a:hover {
+    outline: 0;
+}
+
+a:focus {
+    outline: thin dotted;
+}
+
+sup.md-footnote {
+    background-color: #555;
+    color: #ddd;
+}
+
+p {
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+}
+
+p,
+ul,
+dd,
+ol,
+hr,
+address,
+pre,
+table,
+iframe,
+.wp-caption,
+.wp-audio-shortcode,
+.wp-video-shortcode {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    /* 24px */
+}
+
+li > blockquote {
+	margin-bottom: 0;
+}
+
+audio:not([controls]) {
+    display: none;
+}
+
+[hidden] {
+    display: none;
+}
+
+::-moz-selection {
+    background: #4a89dc;
+    color: #fff;
+    text-shadow: none;
+}
+
+*.in-text-selection,
+::selection {
+    background: #4a89dc;
+    color: #fff;
+    text-shadow: none;
+}
+
+ul,
+ol {
+    padding: 0 0 0 1.875rem;
+    /* 30px */
+}
+
+ul {
+    list-style: square;
+}
+
+ol {
+    list-style: decimal;
+}
+
+ul ul,
+ol ol,
+ul ol,
+ol ul {
+    margin: 0;
+}
+
+b,
+th,
+dt,
+strong {
+    font-weight: bold;
+}
+
+i,
+em,
+dfn,
+cite {
+    font-style: italic;
+}
+
+blockquote {
+    padding-left: 1.875rem;
+    margin: 0 0 1.875rem 1.875rem;
+    border-left: solid 2px #474d54;
+    padding-left: 30px;
+    margin-top: 35px;
+}
+
+pre,
+code,
+kbd,
+tt,
+var {
+    font-size: 0.875rem;
+    font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+}
+
+code,
+tt,
+var {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+kbd {
+    padding: 2px 4px;
+    font-size: 90%;
+    color: #fff;
+    background-color: #333;
+    border-radius: 3px;
+    box-shadow: inset 0 -1px 0 rgba(0,0,0,.25);
+}
+
+pre.md-fences {
+    padding: 10px 10px 10px 30px;
+    margin-bottom: 20px;
+    background: #333;
+}
+
+.CodeMirror-gutters {
+    background: #333;
+    border-right: 1px solid transparent;
+}
+
+.enable-diagrams pre.md-fences[lang="sequence"] .code-tooltip,
+.enable-diagrams pre.md-fences[lang="flow"] .code-tooltip,
+.enable-diagrams pre.md-fences[lang="mermaid"] .code-tooltip {
+    bottom: -2.2em;
+    right: 4px;
+}
+
+code,
+kbd,
+tt,
+var {
+    padding: 2px 5px;
+}
+
+table {
+    max-width: 100%;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+th,
+td {
+    padding: 5px 10px;
+    vertical-align: top;
+}
+
+a {
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+hr {
+    background: #474d54;
+    /* variable */
+}
+
+h1 {
+    margin-top: 2em;
+}
+
+a {
+    color: #e0e0e0;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #fff;
+}
+
+.md-inline-math script {
+    color: #81b1db;
+}
+
+b,
+th,
+dt,
+strong {
+    color: #DEDEDE;
+    /* variable */
+}
+
+mark {
+    background: #D3D40E;
+}
+
+blockquote {
+    color: #9DA2A6;
+}
+
+table a {
+    color: #DEDEDE;
+    /* variable */
+}
+
+th,
+td {
+    border: solid 1px #474d54;
+    /* variable */
+}
+
+.task-list {
+    padding-left: 0;
+}
+
+.md-task-list-item {
+    padding-left: 1.25rem;
+}
+
+.md-task-list-item > input {
+    top: auto;
+}
+
+.md-task-list-item > input:before {
+    content: "";
+    display: inline-block;
+    width: 0.875rem;
+    height: 0.875rem;
+    vertical-align: middle;
+    text-align: center;
+    border: 1px solid #b8bfc6;
+    background-color: #363B40;
+    margin-top: -0.4rem;
+}
+
+.md-task-list-item > input:checked:before,
+.md-task-list-item > input[checked]:before {
+    content: '\221A';
+    /*◘*/
+    font-size: 0.625rem;
+    line-height: 0.625rem;
+    color: #DEDEDE;
+}
+
+/** quick open **/
+.auto-suggest-container {
+    border: 0px;
+    background-color: #525C65;
+}
+
+#typora-quick-open {
+    background-color: #525C65;
+}
+
+#typora-quick-open input{
+    background-color: #525C65;
+    border: 0;
+    border-bottom: 1px solid grey;
+}
+
+.typora-quick-open-item {
+    background-color: inherit;
+    color: inherit;
+}
+
+.typora-quick-open-item.active,
+.typora-quick-open-item:hover {
+    background-color: #4D8BDB;
+    color: white;
+}
+
+.typora-quick-open-item:hover {
+    background-color: rgba(77, 139, 219, 0.8);
+}
+
+.typora-search-spinner > div {
+  background-color: #fff;
+}
+
+#write pre.md-meta-block {
+    border-bottom: 1px dashed #ccc;
+    background: transparent;
+    padding-bottom: 0.6em;
+    line-height: 1.6em;
+}
+
+.btn,
+.btn .btn-default {
+    background: transparent;
+    color: #b8bfc6;
+}
+
+.ty-table-edit {
+    border-top: 1px solid gray;
+    background-color: #363B40;
+}
+
+.popover-title {
+    background: transparent;
+}
+
+.md-image>.md-meta {
+    color: #BBBBBB;
+    background: transparent;
+}
+
+.md-expand.md-image>.md-meta {
+    color: #DDD;
+}
+
+#write>h3:before,
+#write>h4:before,
+#write>h5:before,
+#write>h6:before {
+    border: none;
+    border-radius: 0px;
+    color: #888;
+    text-decoration: underline;
+    left: -1.4rem;
+    top: 0.2rem;
+}
+
+#write>h3.md-focus:before {
+    top: 2px;
+}
+
+#write>h4.md-focus:before {
+    top: 2px;
+}
+
+.md-toc-item {
+    color: #A8C2DC;
+}
+
+#write div.md-toc-tooltip {
+    background-color: #363B40;
+}
+
+.dropdown-menu .btn:hover,
+.dropdown-menu .btn:focus,
+.md-toc .btn:hover,
+.md-toc .btn:focus {
+    color: white;
+    background: black;
+}
+
+#toc-dropmenu {
+    background: rgba(50, 54, 59, 0.93);
+    border: 1px solid rgba(253, 253, 253, 0.15);
+}
+
+#toc-dropmenu .divider {
+    background-color: #9b9b9b;
+}
+
+.outline-expander:before {
+    top: 2px;
+}
+
+#typora-sidebar {
+    box-shadow: none;
+    border-right: 1px dashed;
+    border-right: none;
+}
+
+.sidebar-tabs {
+    border-bottom:0;
+}
+
+#typora-sidebar:hover .outline-title-wrapper {
+    border-left: 1px dashed;
+}
+
+.outline-title-wrapper .btn {
+    color: inherit;
+}
+
+.outline-item:hover {
+    border-color: #363B40;
+    background-color: #363B40;
+    color: white;
+}
+
+h1.md-focus .md-attr,
+h2.md-focus .md-attr,
+h3.md-focus .md-attr,
+h4.md-focus .md-attr,
+h5.md-focus .md-attr,
+h6.md-focus .md-attr,
+.md-header-span .md-attr {
+    color: #8C8E92;
+    display: inline;
+}
+
+.md-comment {
+    color: #5a95e3;
+    opacity: 1;
+}
+
+.md-inline-math svg {
+    color: #b8bfc6;
+}
+
+#math-inline-preview .md-arrow:after {
+    background: black;
+}
+
+.modal-content {
+    background: var(--bg-color);
+    border: 0;
+}
+
+.modal-title {
+    font-size: 1.5em;
+}
+
+.modal-content input {
+    background-color: rgba(26, 21, 21, 0.51);
+    color: white;
+}
+
+.modal-content .input-group-addon {
+    color: white;
+}
+
+.modal-backdrop {
+    background-color: rgba(174, 174, 174, 0.7);
+}
+
+.modal-content .btn-primary {
+    border-color: var(--primary-color);
+}
+
+.md-table-resize-popover {
+    background-color: #333;
+}
+
+.form-inline .input-group .input-group-addon {
+    color: white;
+}
+
+#md-searchpanel {
+    border-bottom: 1px dashed grey;
+}
+
+/** UI for electron */
+
+.context-menu,
+#spell-check-panel,
+#footer-word-count-info {
+    background-color: #42464A;
+}
+
+.context-menu.dropdown-menu .divider,
+.dropdown-menu .divider {
+    background-color: #777777;
+}
+
+footer {
+    color: inherit;
+}
+
+@media (max-width: 1000px) {
+    footer {
+        border-top: none;
+    }
+    footer:hover {
+        color: inherit;
+    }
+}
+
+#file-info-file-path .file-info-field-value:hover {
+    background-color: #555;
+    color: #dedede;
+}
+
+.megamenu-content,
+.megamenu-opened header {
+    background: var(--bg-color);
+}
+
+.megamenu-menu-panel h2,
+.megamenu-menu-panel h1,
+.long-btn {
+    color: inherit;
+}
+
+.megamenu-menu-panel input[type='text'] {
+    background: inherit;
+    border: 0;
+    border-bottom: 1px solid;
+}
+
+#recent-file-panel-action-btn {
+    background: inherit;
+    border: 1px grey solid;
+}
+
+.megamenu-menu-panel .dropdown-menu > li > a {
+    color: inherit;
+    background-color: #2F353A;
+    text-decoration: none;
+}
+
+.megamenu-menu-panel table td:nth-child(1) {
+    color: inherit;
+    font-weight: bold;
+}
+
+.megamenu-menu-panel tbody tr:hover td:nth-child(1) {
+    color: white;
+}
+
+.modal-footer .btn-default, 
+.modal-footer .btn-primary,
+.modal-footer .btn-default:not(:hover) {
+    border: 1px solid;
+    border-color: transparent;
+}
+
+.btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default {
+    color: white;
+    border: 1px solid #ddd;
+    background-color: inherit;
+}
+
+.modal-header {
+    border-bottom: 0;
+}
+
+.modal-footer {
+    border-top: 0;
+}
+
+#recent-file-panel tbody tr:nth-child(2n-1) {
+    background-color: transparent !important;
+}
+
+.megamenu-menu-panel tbody tr:hover td:nth-child(2) {
+    color: inherit;
+}
+
+.megamenu-menu-panel .btn {
+    border: 1px solid #eee;
+    background: transparent;
+}
+
+.mouse-hover .toolbar-icon.btn:hover,
+#w-full.mouse-hover,
+#w-pin.mouse-hover {
+    background-color: inherit;
+}
+
+.typora-node::-webkit-scrollbar {
+    width: 5px;
+}
+
+.typora-node::-webkit-scrollbar-thumb:vertical {
+    background: rgba(250, 250, 250, 0.3);
+}
+
+.typora-node::-webkit-scrollbar-thumb:vertical:active {
+    background: rgba(250, 250, 250, 0.5);
+}
+
+#w-unpin {
+    background-color: #4182c4;
+}
+
+#top-titlebar, #top-titlebar * {
+    color: var(--item-hover-text-color);
+}
+
+.typora-sourceview-on #toggle-sourceview-btn,
+#footer-word-count:hover,
+.ty-show-word-count #footer-word-count {
+    background: #333333;
+}
+
+#toggle-sourceview-btn:hover {
+    color: #eee;
+    background: #333333;
+}
+
+/** focus mode */
+.on-focus-mode .md-end-block:not(.md-focus):not(.md-focus-container) * {
+    color: #686868 !important;
+}
+
+.on-focus-mode .md-end-block:not(.md-focus) img,
+.on-focus-mode .md-task-list-item:not(.md-focus-container)>input {
+    opacity: #686868 !important;
+}
+
+.on-focus-mode li[cid]:not(.md-focus-container){
+    color: #686868;
+}
+
+.on-focus-mode .md-fences.md-focus .CodeMirror-code>*:not(.CodeMirror-activeline) *,
+.on-focus-mode .CodeMirror.cm-s-inner:not(.CodeMirror-focused) * {
+    color: #686868 !important;
+}
+
+.on-focus-mode .md-focus,
+.on-focus-mode .md-focus-container {
+    color: #fff;
+}
+
+.on-focus-mode #typora-source .CodeMirror-code>*:not(.CodeMirror-activeline) * {
+    color: #686868 !important;
+}
+
+
+/*diagrams*/
+#write .md-focus .md-diagram-panel {
+    border: 1px solid #ddd;
+    margin-left: -1px;
+    width: calc(100% + 2px);
+}
+
+/*diagrams*/
+#write .md-focus.md-fences-with-lineno .md-diagram-panel {
+    margin-left: auto;
+}
+
+.md-diagram-panel-error {
+    color: #f1908e;
+}
+
+.active-tab-files #info-panel-tab-file,
+.active-tab-files #info-panel-tab-file:hover,
+.active-tab-outline #info-panel-tab-outline,
+.active-tab-outline #info-panel-tab-outline:hover {
+    color: #eee;
+}
+
+.sidebar-footer-item:hover,
+.footer-item:hover {
+    background: inherit;
+    color: white;
+}
+
+.ty-side-sort-btn.active,
+.ty-side-sort-btn:hover,
+.selected-folder-menu-item a:after {
+    color: white;
+}
+
+#sidebar-files-menu {
+    border:solid 1px;
+    box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.79);
+    background-color: var(--bg-color);
+}
+
+.file-list-item {
+    border-bottom:none;
+}
+
+.file-list-item-summary {
+    opacity: 1;
+}
+
+.file-list-item.active:first-child {
+    border-top: none;
+}
+
+.file-node-background {
+    height: 32px;
+}
+
+.file-library-node.active>.file-node-content,
+.file-list-item.active {
+    color: white;
+    color: var(--active-file-text-color);
+}
+
+.file-library-node.active>.file-node-background{
+    background-color: rgb(34, 34, 34);
+    background-color: var(--active-file-bg-color);
+}
+.file-list-item.active {
+    background-color: rgb(34, 34, 34);
+    background-color: var(--active-file-bg-color);
+}
+
+#ty-tooltip {
+    background-color: black;
+    color: #eee;
+}
+
+.md-task-list-item>input {
+    margin-left: -1.3em;
+    margin-top: 0.3rem;
+    -webkit-appearance: none;
+}
+
+.md-mathjax-midline {
+    background-color: #57616b;
+    border-bottom: none;
+}
+
+footer.ty-footer {
+    border-color: #656565;
+}
+
+.ty-preferences .btn-default {
+    background: transparent;
+}
+.ty-preferences .btn-default:hover {
+    background: #57616b;
+}
+
+.ty-preferences select {
+    border: 1px solid #989698;
+    height: 21px;
+}
+
+.ty-preferences .nav-group-item.active {
+    background: var(--item-hover-bg-color);
+}
+
+.ty-preferences input[type="search"] {
+    border-color: #333;
+    background: #333;
+    line-height: 22px;
+    border-radius: 6px;
+    color: white;
+}
+
+.ty-preferences input[type="search"]:focus {
+    box-shadow: none;
+}
+
+[data-is-directory="true"] .file-node-content {
+    margin-bottom: 0;
+}
+
+.file-node-title {
+    line-height: 22px;
+}
+
+.html-for-mac .file-node-open-state, .html-for-mac .file-node-icon {
+    line-height: 26px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(230, 230, 230, 0.30);
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: rgba(230, 230, 230, 0.50);
+}
+
+#typora-sidebar:hover div.sidebar-content-content::-webkit-scrollbar-thumb:horizontal {
+    background: rgba(230, 230, 230, 0.30);
+}
+
+.nav-group-item:active {
+    background-color: #474d54;
+}
+
+.md-search-hit {
+    background: rgba(199, 140, 60, 0.81);
+    color: #eee;
+}
+
+.md-search-hit * {
+    color: #eee;
+}
+
+#md-searchpanel input {
+    color: white;
+}
+
+.export-detail,
+.export-item.active,
+.export-items-list-control {
+    background: #d6d6d4
+}
+
+
+</style>
+</head>
+<body class='typora-export'>
+<div id='write'  class=''><h2><a name="策略逻辑简介" class="md-header-anchor"></a><span>策略逻辑简介 </span></h2><p><span>	</span><span>功夫系统上的策略在策略连接⾏情交易柜台，发送订阅请求以后，通过以下回调函数给⽤户发送消息，⽤户在不同的回调函数中调⽤功能函数实现获取⾏情，下单，时间回调等逻辑。详细数据定义和接</span></p><p><span>	</span><span>函数定义可查看后⽂，以下为⼀个策略示例</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="c++" style="break-inside: unset;"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="c++"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">#include &lt;kungfu/wingchun/extension.h&gt;</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">#include &lt;kungfu/wingchun/strategy/context.h&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">#include &lt;kungfu/wingchun/strategy/runtime.h&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">#include &lt;kungfu/wingchun/strategy/strategy.h&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">using</span> <span class="cm-keyword">namespace</span> <span class="cm-def">kungfu::longfist::enums</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">using</span> <span class="cm-keyword">namespace</span> <span class="cm-def">kungfu::longfist::types</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">using</span> <span class="cm-keyword">namespace</span> <span class="cm-def">kungfu::wingchun::strategy</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">using</span> <span class="cm-keyword">namespace</span> <span class="cm-def">kungfu::yijinjing::data</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">KUNGFU_MAIN_STRATEGY</span>(<span class="cm-variable">KungfuStrategy101</span>) {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">public</span>:</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">KungfuStrategy101</span>() <span class="cm-operator">=</span> <span class="cm-keyword">default</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">~KungfuStrategy101</span>() <span class="cm-operator">=</span> <span class="cm-keyword">default</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable-3">void</span> <span class="cm-variable">pre_start</span>(<span class="cm-variable">Context_ptr</span> <span class="cm-operator">&amp;</span> <span class="cm-variable">context</span>) <span class="cm-keyword">override</span> {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">SPDLOG_INFO</span>(<span class="cm-string">"preparing strategy"</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">context</span><span class="cm-operator">-&gt;</span><span class="cm-variable">add_account</span>(<span class="cm-string">"xtp"</span>, <span class="cm-string">"123456"</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">context</span><span class="cm-operator">-&gt;</span><span class="cm-variable">subscribe</span>(<span class="cm-string">"xtp"</span>, {<span class="cm-string">"600000"</span>}, {<span class="cm-string">"SSE"</span>});</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">context</span><span class="cm-operator">-&gt;</span><span class="cm-variable">subscribe_all</span>(<span class="cm-string">"xtp"</span>); &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="cm-comment">//全量订阅</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable-3">void</span> <span class="cm-variable">post_start</span>(<span class="cm-variable">Context_ptr</span> <span class="cm-operator">&amp;</span> <span class="cm-variable">context</span>) <span class="cm-keyword">override</span> {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">SPDLOG_INFO</span>(<span class="cm-string">"strategy started"</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable-3">void</span> <span class="cm-variable">pre_stop</span>(<span class="cm-variable">Context_ptr</span> <span class="cm-operator">&amp;</span><span class="cm-variable">context</span>) <span class="cm-keyword">override</span> {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">SPDLOG_INFO</span>(<span class="cm-string">"pre_stop"</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  };</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable-3">void</span> <span class="cm-variable">post_stop</span>(<span class="cm-variable">Context_ptr</span> <span class="cm-operator">&amp;</span><span class="cm-variable">context</span>) <span class="cm-keyword">override</span> {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">SPDLOG_INFO</span>(<span class="cm-string">"pre_stop"</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  };</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable-3">void</span> <span class="cm-variable">on_order</span>(<span class="cm-variable">Context_ptr</span> <span class="cm-operator">&amp;</span><span class="cm-variable">context</span>, <span class="cm-keyword">const</span> <span class="cm-variable">Order</span> <span class="cm-operator">&amp;</span><span class="cm-variable">order</span>,</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-keyword">const</span> <span class="cm-variable">kungfu::yijinjing::data::location_ptr</span> <span class="cm-operator">&amp;</span><span class="cm-variable">location</span>) <span class="cm-keyword">override</span>{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">SPDLOG_INFO</span>(<span class="cm-string">"on order: {}"</span>, <span class="cm-variable">order</span>.<span class="cm-variable">to_string</span>());</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  };</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable-3">void</span> <span class="cm-variable">on_quote</span>(<span class="cm-variable">Context_ptr</span> <span class="cm-operator">&amp;</span> <span class="cm-variable">context</span>, <span class="cm-keyword">const</span> <span class="cm-variable">Quote</span> <span class="cm-operator">&amp;</span><span class="cm-variable">quote</span>, <span class="cm-keyword">const</span> <span class="cm-variable">location_ptr</span> <span class="cm-operator">&amp;</span><span class="cm-variable">location</span>) <span class="cm-keyword">override</span> {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">SPDLOG_INFO</span>(<span class="cm-string">"on quote: {}"</span>, <span class="cm-variable">quote</span>.<span class="cm-variable">to_string</span>());</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">auto</span> <span class="cm-variable">oid</span> <span class="cm-operator">=</span> <span class="cm-variable">context</span><span class="cm-operator">-&gt;</span><span class="cm-variable">insert_order</span>(<span class="cm-variable">quote</span>.<span class="cm-variable">instrument_id</span>, <span class="cm-variable">quote</span>.<span class="cm-variable">exchange_id</span>, <span class="cm-string">"sim"</span>, <span class="cm-string">"123456"</span>, <span class="cm-variable">quote</span>.<span class="cm-variable">last_price</span>, <span class="cm-number">100</span>,</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">PriceType::Limit</span>, <span class="cm-variable">Side::Buy</span>, <span class="cm-variable">Offset::Open</span>, <span class="cm-variable">HedgeFlag::Speculation</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">context</span><span class="cm-operator">-&gt;</span><span class="cm-variable">cancel_order</span>(<span class="cm-variable">oid</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable-3">void</span> <span class="cm-variable">on_entrust</span>(<span class="cm-variable">Context_ptr</span> <span class="cm-operator">&amp;</span><span class="cm-variable">context</span>, <span class="cm-keyword">const</span> <span class="cm-variable">Entrust</span> <span class="cm-operator">&amp;</span><span class="cm-variable">entrust</span>, <span class="cm-keyword">const</span> <span class="cm-variable">location_ptr</span> <span class="cm-operator">&amp;</span><span class="cm-variable">location</span>) <span class="cm-keyword">override</span> {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">SPDLOG_INFO</span>(<span class="cm-string">"on entrust: {}"</span>, <span class="cm-variable">entrust</span>.<span class="cm-variable">to_string</span>());</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable-3">void</span> <span class="cm-variable">on_transaction</span>(<span class="cm-variable">Context_ptr</span> <span class="cm-operator">&amp;</span><span class="cm-variable">context</span>, <span class="cm-keyword">const</span> <span class="cm-variable">Transaction</span> <span class="cm-operator">&amp;</span><span class="cm-variable">transaction</span>, <span class="cm-keyword">const</span> <span class="cm-variable">location_ptr</span> <span class="cm-operator">&amp;</span><span class="cm-variable">location</span>) <span class="cm-keyword">override</span> {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">SPDLOG_INFO</span>(<span class="cm-string">"on transaction: {}"</span>, <span class="cm-variable">transaction</span>.<span class="cm-variable">to_string</span>());</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">};</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 1482px;"></div><div class="CodeMirror-gutters" style="display: none; height: 1482px;"></div></div></div></pre><p>&nbsp;</p><h2><a name="函数定义" class="md-header-anchor"></a><span>函数定义</span></h2><h3><a name="基本方法" class="md-header-anchor"></a><span>基本方法</span></h3><h4><a name="prestart" class="md-header-anchor"></a><span>pre_start</span></h4><p><span>	</span><span>启动前调⽤函数，在策略启动前调⽤，⽤于完成添加交易账户，订阅⾏情，策略初始化计算等</span></p><p><span>参数</span></p><figure><table><thead><tr><th style='text-align:center;' ><span>参数</span></th><th style='text-align:center;' ><span>类型</span></th><th style='text-align:center;' ><span>说明</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>context</span></td><td style='text-align:center;' ><span>对象</span></td><td style='text-align:center;' ><span>策略的全局变量，通过点标记（&quot;-&gt;&quot;）来获取其属性</span></td></tr></tbody></table></figure><p><span>返回</span></p><figure><table><thead><tr><th style='text-align:center;' ><span>返回</span></th><th style='text-align:center;' ><span>类型</span></th><th style='text-align:center;' ><span>说明</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>无</span></td><td style='text-align:center;' ><span>无</span></td><td style='text-align:center;' ><span>无</span></td></tr></tbody></table></figure><p><span>范例 : </span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="c++"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="c++"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable-3">void</span> <span class="cm-def">pre_start</span>(<span class="cm-variable">Context_ptr</span> <span class="cm-operator">&amp;</span><span class="cm-variable">context</span>) <span class="cm-keyword">override</span>{</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable">SPDLOG_INFO</span>(<span class="cm-string">"preparing strategy"</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">};</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 78px;"></div><div class="CodeMirror-gutters" style="display: none; height: 78px;"></div></div></div></pre><h4><a name="poststart" class="md-header-anchor"></a><span>post_start</span></h4><p><span>	</span><span>启动后调⽤函数，策略连接上⾏情交易柜台后调⽤，本函数回调后，策略可以执⾏添加时间回 调、获取策略持仓、报单等操作</span></p><p><span>参数</span></p><figure><table><thead><tr><th style='text-align:center;' ><span>参数</span></th><th style='text-align:center;' ><span>类型</span></th><th style='text-align:center;' ><span>说明</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>context</span></td><td style='text-align:center;' ><span>对象</span></td><td style='text-align:center;' ><span>策略的全局变量，通过点标记（&quot;-&gt;&quot;）来获取其属性</span></td></tr></tbody></table></figure><p><span>返回</span></p><figure><table><thead><tr><th style='text-align:center;' ><span>返回</span></th><th style='text-align:center;' ><span>类型</span></th><th style='text-align:center;' ><span>说明</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>无</span></td><td style='text-align:center;' ><span>无</span></td><td style='text-align:center;' ><span>无</span></td></tr></tbody></table></figure><p><span>范例 : </span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="c++"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="c++"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable-3">void</span> <span class="cm-def">post_start</span>(<span class="cm-variable">Context_ptr</span> <span class="cm-operator">&amp;</span><span class="cm-variable">context</span>) <span class="cm-keyword">override</span>{</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable">SPDLOG_INFO</span>(<span class="cm-string">"strategy started"</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">};</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 78px;"></div><div class="CodeMirror-gutters" style="display: none; height: 78px;"></div></div></div></pre><h4><a name="prestop" class="md-header-anchor"></a><span>pre_stop</span></h4><p><span>	</span><span>策略退出前方法</span></p><p><span>参数</span></p><figure><table><thead><tr><th style='text-align:center;' ><span>参数</span></th><th style='text-align:center;' ><span>类型</span></th><th style='text-align:center;' ><span>说明</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>context</span></td><td style='text-align:center;' ><span>对象</span></td><td style='text-align:center;' ><span>策略的全局变量，通过点标记（&quot;-&gt;&quot;）来获取其属性</span></td></tr></tbody></table></figure><p><span>返回</span></p><figure><table><thead><tr><th style='text-align:center;' ><span>返回</span></th><th style='text-align:center;' ><span>类型</span></th><th style='text-align:center;' ><span>说明</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>无</span></td><td style='text-align:center;' ><span>无</span></td><td style='text-align:center;' ><span>无</span></td></tr></tbody></table></figure><p><span>范例 : </span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="c++"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="c++"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable-3">void</span> <span class="cm-def">pre_stop</span>(<span class="cm-variable">Context_ptr</span> <span class="cm-operator">&amp;</span><span class="cm-variable">context</span>) <span class="cm-keyword">override</span>{</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable">SPDLOG_INFO</span>(<span class="cm-string">"pre_stop"</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">};</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 78px;"></div><div class="CodeMirror-gutters" style="display: none; height: 78px;"></div></div></div></pre><h4><a name="poststop" class="md-header-anchor"></a><span>post_stop</span></h4><p><span>	</span><span>进程退出前方法</span></p><p><span>参数</span></p><figure><table><thead><tr><th style='text-align:center;' ><span>参数</span></th><th style='text-align:center;' ><span>类型</span></th><th style='text-align:center;' ><span>说明</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>context</span></td><td style='text-align:center;' ><span>对象</span></td><td style='text-align:center;' ><span>策略的全局变量，通过点标记（&quot;-&gt;&quot;）来获取其属性</span></td></tr></tbody></table></figure><p><span>返回</span></p><figure><table><thead><tr><th style='text-align:center;' ><span>返回</span></th><th style='text-align:center;' ><span>类型</span></th><th style='text-align:center;' ><span>说明</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>无</span></td><td style='text-align:center;' ><span>无</span></td><td style='text-align:center;' ><span>无</span></td></tr></tbody></table></figure><p><span>范例 : </span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="c++"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="c++"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable-3">void</span> <span class="cm-def">post_stop</span>(<span class="cm-variable">Context_ptr</span> <span class="cm-operator">&amp;</span><span class="cm-variable">context</span>) <span class="cm-keyword">override</span>{</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable">SPDLOG_INFO</span>(<span class="cm-string">"pre_stop"</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">};</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 78px;"></div><div class="CodeMirror-gutters" style="display: none; height: 78px;"></div></div></div></pre><h4><a name="onquote" class="md-header-anchor"></a><span>on_quote </span></h4><p><span>	</span><span>行情数据的推送会自动触发该方法的调用</span></p><p><span>参数 </span></p><figure><table><thead><tr><th style='text-align:center;' ><span>参数</span></th><th style='text-align:center;' ><span>类型</span></th><th style='text-align:center;' ><span>说明</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>context</span></td><td style='text-align:center;' ><span>对象</span></td><td style='text-align:center;' ><span>策略的全局变量，通过点标记（&quot;-&gt;&quot;）来获取其属性</span></td></tr><tr><td style='text-align:center;' ><span>quote</span></td><td style='text-align:center;' ><span>Quote对象</span></td><td style='text-align:center;' ><span>行情数据</span></td></tr><tr><td style='text-align:center;' ><span>location</span></td><td style='text-align:center;' ><span>Location对象</span></td><td style='text-align:center;' ><span>Location</span></td></tr></tbody></table></figure><p><span>返回</span></p><figure><table><thead><tr><th style='text-align:center;' ><span>返回</span></th><th style='text-align:center;' ><span>类型</span></th><th style='text-align:center;' ><span>说明</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>无</span></td><td style='text-align:center;' ><span>无</span></td><td style='text-align:center;' ><span>无</span></td></tr></tbody></table></figure><p><span>范例 : </span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="c++"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="c++"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable-3">void</span> <span class="cm-def">on_quote</span>(<span class="cm-variable">Context_ptr</span> <span class="cm-operator">&amp;</span> <span class="cm-variable">context</span>, <span class="cm-keyword">const</span> <span class="cm-variable">Quote</span> <span class="cm-operator">&amp;</span><span class="cm-variable">quote</span>, <span class="cm-keyword">const</span> <span class="cm-variable">location_ptr</span> <span class="cm-operator">&amp;</span><span class="cm-variable">location</span>) <span class="cm-keyword">override</span> {</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">SPDLOG_INFO</span>(<span class="cm-string">"on quote: {}"</span>, <span class="cm-variable">quote</span>.<span class="cm-variable">to_string</span>());</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  }</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 78px;"></div><div class="CodeMirror-gutters" style="display: none; height: 78px;"></div></div></div></pre><h4><a name="ontransaction" class="md-header-anchor"></a><span>on_transaction </span></h4><p><span>	</span><span>逐笔成交行情数据的推送会自动触发该方法的调用</span></p><p><span>参数 </span></p><figure><table><thead><tr><th style='text-align:center;' ><span>参数</span></th><th style='text-align:center;' ><span>类型</span></th><th style='text-align:center;' ><span>说明</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>context</span></td><td style='text-align:center;' ><span>对象</span></td><td style='text-align:center;' ><span>策略的全局变量，通过点标记（&quot;-&gt;&quot;）来获取其属性</span></td></tr><tr><td style='text-align:center;' ><span>transaction</span></td><td style='text-align:center;' ><span>Transaction对象</span></td><td style='text-align:center;' ><span>逐笔成交行情数据</span></td></tr><tr><td style='text-align:center;' ><span>location</span></td><td style='text-align:center;' ><span>Location对象</span></td><td style='text-align:center;' ><span>Location</span></td></tr></tbody></table></figure><p><span>返回</span></p><figure><table><thead><tr><th style='text-align:center;' ><span>返回</span></th><th style='text-align:center;' ><span>类型</span></th><th style='text-align:center;' ><span>说明</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>无</span></td><td style='text-align:center;' ><span>无</span></td><td style='text-align:center;' ><span>无</span></td></tr></tbody></table></figure><p><span>范例 : </span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="c++"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="c++"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable-3">void</span> <span class="cm-def">on_transaction</span>(<span class="cm-variable">Context_ptr</span> <span class="cm-operator">&amp;</span><span class="cm-variable">context</span>, <span class="cm-keyword">const</span> <span class="cm-variable">Transaction</span> <span class="cm-operator">&amp;</span><span class="cm-variable">transaction</span>, <span class="cm-keyword">const</span> <span class="cm-variable">location_ptr</span> <span class="cm-operator">&amp;</span><span class="cm-variable">location</span>) <span class="cm-keyword">override</span> {</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">SPDLOG_INFO</span>(<span class="cm-string">"on transaction: {}"</span>, <span class="cm-variable">transaction</span>.<span class="cm-variable">to_string</span>());</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  }</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 104px;"></div><div class="CodeMirror-gutters" style="display: none; height: 104px;"></div></div></div></pre><h4><a name="onentrust" class="md-header-anchor"></a><span>on_entrust </span></h4><p><span>	</span><span>逐笔委托行情数据的推送会自动触发该方法的调用</span></p><p><span>参数 </span></p><figure><table><thead><tr><th style='text-align:center;' ><span>参数</span></th><th style='text-align:center;' ><span>类型</span></th><th style='text-align:center;' ><span>说明</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>context</span></td><td style='text-align:center;' ><span>对象</span></td><td style='text-align:center;' ><span>策略的全局变量，通过点标记（&quot;-&gt;&quot;）来获取其属性</span></td></tr><tr><td style='text-align:center;' ><span>entrust</span></td><td style='text-align:center;' ><span>Entrust对象</span></td><td style='text-align:center;' ><span>逐笔委托行情数据</span></td></tr><tr><td style='text-align:center;' ><span>location</span></td><td style='text-align:center;' ><span>Location对象</span></td><td style='text-align:center;' ><span>Location</span></td></tr></tbody></table></figure><p><span>返回</span></p><figure><table><thead><tr><th style='text-align:center;' ><span>返回</span></th><th style='text-align:center;' ><span>类型</span></th><th style='text-align:center;' ><span>说明</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>无</span></td><td style='text-align:center;' ><span>无</span></td><td style='text-align:center;' ><span>无</span></td></tr></tbody></table></figure><p><span>范例 : </span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="c++"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="c++"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable-3">void</span> <span class="cm-def">on_entrust</span>(<span class="cm-variable">Context_ptr</span> <span class="cm-operator">&amp;</span><span class="cm-variable">context</span>, <span class="cm-keyword">const</span> <span class="cm-variable">Entrust</span> <span class="cm-operator">&amp;</span><span class="cm-variable">entrust</span>, <span class="cm-keyword">const</span> <span class="cm-variable">location_ptr</span> <span class="cm-operator">&amp;</span><span class="cm-variable">location</span>) <span class="cm-keyword">override</span> {</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">SPDLOG_INFO</span>(<span class="cm-string">"on entrust: {}"</span>, <span class="cm-variable">entrust</span>.<span class="cm-variable">to_string</span>());</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  }</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 78px;"></div><div class="CodeMirror-gutters" style="display: none; height: 78px;"></div></div></div></pre><h4><a name="onorder" class="md-header-anchor"></a><span>on_order </span></h4><p><span>	</span><span>订单信息的更新会自动触发该方法的调用</span></p><p><span>参数 </span></p><figure><table><thead><tr><th style='text-align:center;' ><span>参数</span></th><th style='text-align:center;' ><span>类型</span></th><th style='text-align:center;' ><span>说明</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>context</span></td><td style='text-align:center;' ><span>对象</span></td><td style='text-align:center;' ><span>策略的全局变量，通过点标记（&quot;-&gt;&quot;）来获取其属性</span></td></tr><tr><td style='text-align:center;' ><span>order</span></td><td style='text-align:center;' ><span>Order对象</span></td><td style='text-align:center;' ><span>订单信息更新数据</span></td></tr><tr><td style='text-align:center;' ><span>location</span></td><td style='text-align:center;' ><span>Location对象</span></td><td style='text-align:center;' ><span>Location</span></td></tr></tbody></table></figure><p><span>返回</span></p><figure><table><thead><tr><th style='text-align:center;' ><span>返回</span></th><th style='text-align:center;' ><span>类型</span></th><th style='text-align:center;' ><span>说明</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>无</span></td><td style='text-align:center;' ><span>无</span></td><td style='text-align:center;' ><span>无</span></td></tr></tbody></table></figure><p><span>范例 : </span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="c++"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="c++"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable-3">void</span> <span class="cm-def">on_order</span>(<span class="cm-variable">Context_ptr</span> <span class="cm-operator">&amp;</span><span class="cm-variable">context</span>, <span class="cm-keyword">const</span> <span class="cm-variable">Order</span> <span class="cm-operator">&amp;</span><span class="cm-variable">order</span>,<span class="cm-keyword">const</span> <span class="cm-variable">kungfu::yijinjing::data::location_ptr</span> <span class="cm-operator">&amp;</span><span class="cm-variable">location</span>) <span class="cm-keyword">override</span>{</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">SPDLOG_INFO</span>(<span class="cm-string">"on order: {}"</span>, <span class="cm-variable">order</span>.<span class="cm-variable">to_string</span>());</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; };</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 104px;"></div><div class="CodeMirror-gutters" style="display: none; height: 104px;"></div></div></div></pre><h4><a name="ontrade" class="md-header-anchor"></a><span>on_trade </span></h4><p><span>	</span><span>策略订单成交信息的更新会自动触发该方法的调用</span></p><p><span>参数 </span></p><figure><table><thead><tr><th style='text-align:center;' ><span>参数</span></th><th style='text-align:center;' ><span>类型</span></th><th style='text-align:center;' ><span>说明</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>context</span></td><td style='text-align:center;' ><span>对象</span></td><td style='text-align:center;' ><span>策略的全局变量，通过点标记（&quot;-&gt;&quot;）来获取其属性</span></td></tr><tr><td style='text-align:center;' ><span>trade</span></td><td style='text-align:center;' ><span>Trade对象</span></td><td style='text-align:center;' ><span>订单成交更新数据</span></td></tr><tr><td style='text-align:center;' ><span>location</span></td><td style='text-align:center;' ><span>Location对象</span></td><td style='text-align:center;' ><span>Location</span></td></tr></tbody></table></figure><p><span>返回</span></p><figure><table><thead><tr><th style='text-align:center;' ><span>返回</span></th><th style='text-align:center;' ><span>类型</span></th><th style='text-align:center;' ><span>说明</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>无</span></td><td style='text-align:center;' ><span>无</span></td><td style='text-align:center;' ><span>无</span></td></tr></tbody></table></figure><p><span>范例 : </span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="c++"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="c++"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable-3">void</span> <span class="cm-def">on_trade</span>(<span class="cm-variable">Context_ptr</span> <span class="cm-operator">&amp;</span><span class="cm-variable">context</span>, <span class="cm-keyword">const</span> <span class="cm-variable">Trade</span> <span class="cm-operator">&amp;</span><span class="cm-variable">trade</span>,<span class="cm-keyword">const</span> <span class="cm-variable">kungfu::yijinjing::data::location_ptr</span> <span class="cm-operator">&amp;</span><span class="cm-variable">location</span>) <span class="cm-keyword">override</span>{</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable">SPDLOG_INFO</span>(<span class="cm-string">"on trade: {}"</span>, <span class="cm-variable">order</span>.<span class="cm-variable">to_string</span>());</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">};</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 104px;"></div><div class="CodeMirror-gutters" style="display: none; height: 104px;"></div></div></div></pre><h3><a name="行情交易函数" class="md-header-anchor"></a><span>行情交易函数</span></h3><h4><a name="添加交易柜台策略需要先添加账户才能使用该账户报单" class="md-header-anchor"></a><span>添加交易柜台，策略需要先添加账户，才能使用该账户报单</span></h4><p><span>参数</span></p><figure><table><thead><tr><th style='text-align:left;' ><span>参数</span></th><th style='text-align:left;' ><span>类型</span></th><th style='text-align:left;' ><span>说明</span></th></tr></thead><tbody><tr><td style='text-align:left;' ><span>source_id</span></td><td style='text-align:left;' ><span>str</span></td><td style='text-align:left;' ><span>行情柜台ID</span></td></tr><tr><td style='text-align:left;' ><span>account_id</span></td><td style='text-align:left;' ><span>str</span></td><td style='text-align:left;' ><span>账户ID</span></td></tr></tbody></table></figure><p><span>返回</span></p><figure><table><thead><tr><th style='text-align:left;' ><span>返回</span></th><th style='text-align:left;' ><span>类型</span></th><th style='text-align:left;' ><span>说明</span></th></tr></thead><tbody><tr><td style='text-align:left;' ><span>无</span></td><td style='text-align:left;' ><span>无</span></td><td style='text-align:left;' ><span>无</span></td></tr></tbody></table></figure><p><span>范例:</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="c++"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="c++"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">context</span><span class="cm-operator">-&gt;</span><span class="cm-variable">add_account</span>(<span class="cm-string">"xtp"</span>, <span class="cm-string">"123456"</span>);</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 26px;"></div><div class="CodeMirror-gutters" style="display: none; height: 26px;"></div></div></div></pre><h4><a name="订阅行情" class="md-header-anchor"></a><span>订阅行情</span></h4><p><span>参数</span></p><figure><table><thead><tr><th style='text-align:left;' ><span>参数</span></th><th style='text-align:left;' ><span>类型</span></th><th style='text-align:left;' ><span>说明</span></th></tr></thead><tbody><tr><td style='text-align:left;' ><span>source_id</span></td><td style='text-align:left;' ><span>str</span></td><td style='text-align:left;' ><span>行情柜台ID</span></td></tr><tr><td style='text-align:left;' ><span>instrument</span></td><td style='text-align:left;' ><span>list</span></td><td style='text-align:left;' ><span>代码列表</span></td></tr><tr><td style='text-align:left;' ><span>exchange_id</span></td><td style='text-align:left;' ><span>Exchange对象</span></td><td style='text-align:left;' ><span>交易所ID</span></td></tr></tbody></table></figure><p><span>返回</span></p><figure><table><thead><tr><th style='text-align:left;' ><span>返回</span></th><th style='text-align:left;' ><span>类型</span></th><th style='text-align:left;' ><span>说明</span></th></tr></thead><tbody><tr><td style='text-align:left;' ><span>无</span></td><td style='text-align:left;' ><span>无</span></td><td style='text-align:left;' ><span>无</span></td></tr></tbody></table></figure><p><span>范例:</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="c++"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="c++"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">context</span><span class="cm-operator">-&gt;</span><span class="cm-variable">subscribe</span>(<span class="cm-string">"xtp"</span>, {<span class="cm-string">"600000"</span>}, {<span class="cm-string">"SSE"</span>});</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 26px;"></div><div class="CodeMirror-gutters" style="display: none; height: 26px;"></div></div></div></pre><h4><a name="订阅全市场行情" class="md-header-anchor"></a><span>订阅全市场行情</span></h4><p><span>参数</span></p><figure><table><thead><tr><th><span>参数</span></th><th><span>类型</span></th><th><span>说明</span></th></tr></thead><tbody><tr><td><span>source</span></td><td><span>str</span></td><td><span>行情柜台ID</span></td></tr></tbody></table></figure><p><span>返回</span></p><figure><table><thead><tr><th><span>返回</span></th><th><span>类型</span></th><th><span>说明</span></th></tr></thead><tbody><tr><td><span>无</span></td><td><span>无</span></td><td><span>无</span></td></tr></tbody></table></figure><p><span>范例:</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="c++"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="c++"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">context</span><span class="cm-operator">-&gt;</span><span class="cm-variable">subscribe_all</span>(<span class="cm-string">"xtp"</span>);</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 26px;"></div><div class="CodeMirror-gutters" style="display: none; height: 26px;"></div></div></div></pre><h4><a name="报单函数" class="md-header-anchor"></a><span>报单函数</span></h4><p><span>参数</span></p><figure><table><thead><tr><th><span>参数</span></th><th><span>类型</span></th><th><span>说明</span></th></tr></thead><tbody><tr><td><span>instrument_id</span></td><td><span>str</span></td><td><span>合约ID</span></td></tr><tr><td><span>exchange_id</span></td><td><span>str</span></td><td><span>交易所ID</span></td></tr><tr><td><span>source_id</span></td><td><span>str</span></td><td><span>柜台ID</span></td></tr><tr><td><span>account_id</span></td><td><span>str</span></td><td><span>交易账号</span></td></tr><tr><td><span>limit_price</span></td><td><span>float</span></td><td><span>价格</span></td></tr><tr><td><span>volume</span></td><td><span>int</span></td><td><span>数量</span></td></tr><tr><td><span>priceType</span></td><td><span>PriceType对象</span></td><td><span>报单类型</span></td></tr><tr><td><span>side</span></td><td><span>Side对象</span></td><td><span>买卖方向</span></td></tr><tr><td><span>offset</span></td><td><span>Offset对象</span></td><td><span>开平方向</span></td></tr><tr><td><span>hedgeFlag</span></td><td><span>HedgeFlag对象</span></td><td><span>投机套保标识</span></td></tr><tr><td><span>is_swap</span></td><td><span>is_swap对象</span></td><td><span>互换单 (选填,默认为False)</span></td></tr></tbody></table></figure><p><span>返回</span></p><figure><table><thead><tr><th><span>返回</span></th><th><span>类型</span></th><th><span>说明</span></th></tr></thead><tbody><tr><td><span>order_id</span></td><td><span>long</span></td><td><span>订单ID</span></td></tr></tbody></table></figure><p><span>范例</span></p><p>&nbsp;</p><blockquote><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="c++"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="c++"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">auto</span> <span class="cm-variable">oid</span> <span class="cm-operator">=</span> <span class="cm-variable">insert_order</span>(<span class="cm-variable">quote</span>.<span class="cm-variable">instrument_id</span>, <span class="cm-variable">quote</span>.<span class="cm-variable">exchange_id</span>, <span class="cm-string">"xtp"</span>, <span class="cm-string">"123456"</span>, <span class="cm-variable">quote</span>.<span class="cm-variable">last_price</span>, <span class="cm-number">100</span>,</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="cm-variable">PriceType::Limit</span>, <span class="cm-variable">Side::Buy</span>, <span class="cm-variable">Offset::Open</span>, <span class="cm-variable">HedgeFlag::Speculation</span>);</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 78px;"></div><div class="CodeMirror-gutters" style="display: none; height: 78px;"></div></div></div></pre></blockquote><p>&nbsp;</p><h4><a name="批量下单函数" class="md-header-anchor"></a><span>批量下单函数</span></h4><p><span>参数</span></p><figure><table><thead><tr><th><span>参数</span></th><th><span>类型</span></th><th><span>说明</span></th></tr></thead><tbody><tr><td><span>source</span></td><td><span>str</span></td><td><span>柜台ID</span></td></tr><tr><td><span>account</span></td><td><span>str</span></td><td><span>交易账号</span></td></tr><tr><td><span>instrument_ids</span></td><td><span>list</span></td><td><span>合约ID</span></td></tr><tr><td><span>exchange_ids</span></td><td><span>list</span></td><td><span>交易所ID</span></td></tr><tr><td><span>limit_prices</span></td><td><span>list</span></td><td><span>价格</span></td></tr><tr><td><span>volumes</span></td><td><span>list</span></td><td><span>数量</span></td></tr><tr><td><span>types</span></td><td><span>PriceType对象</span></td><td><span>报单类型</span></td></tr><tr><td><span>sides</span></td><td><span>Side对象</span></td><td><span>买卖方向</span></td></tr><tr><td><span>offsets</span></td><td><span>Offset对象</span></td><td><span>开平方向</span></td></tr><tr><td><span>hedge_flags</span></td><td><span>HedgeFlag对象</span></td><td><span>投机套保标识 </span></td></tr><tr><td><span>is_swaps</span></td><td><span>is_swap对象</span></td><td><span>互换单</span></td></tr></tbody></table></figure><p><span>返回</span></p><figure><table><thead><tr><th><span>返回</span></th><th><span>类型</span></th><th><span>说明</span></th></tr></thead><tbody><tr><td><span>order_ids</span></td><td><span>List</span></td><td><span>订单ID</span></td></tr></tbody></table></figure><p><span>范例</span></p><p>&nbsp;</p><blockquote><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="c++"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="c++"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">static</span> <span class="cm-keyword">const</span> <span class="cm-variable">std::string</span> <span class="cm-operator">&amp;</span><span class="cm-variable">source</span> <span class="cm-operator">=</span> <span class="cm-string">"sim"</span>;</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">static</span> <span class="cm-keyword">const</span> <span class="cm-variable">std::string</span> <span class="cm-operator">&amp;</span><span class="cm-variable">account</span> <span class="cm-operator">=</span> <span class="cm-string">"123456"</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">static</span> <span class="cm-keyword">const</span> <span class="cm-variable">std::vector</span><span class="cm-operator">&lt;</span><span class="cm-variable">std::string</span><span class="cm-operator">&gt;</span> <span class="cm-operator">&amp;</span><span class="cm-variable">instrument_ids</span> <span class="cm-operator">=</span> {<span class="cm-string">"000001"</span>, <span class="cm-string">"000002"</span>, <span class="cm-string">"600000"</span>};</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">static</span> <span class="cm-keyword">const</span> <span class="cm-variable">std::vector</span><span class="cm-operator">&lt;</span><span class="cm-variable">std::string</span><span class="cm-operator">&gt;</span> <span class="cm-operator">&amp;</span><span class="cm-variable">exchange_ids</span> <span class="cm-operator">=</span> {<span class="cm-variable">EXCHANGE_SZE</span>, <span class="cm-variable">EXCHANGE_SZE</span>, <span class="cm-variable">EXCHANGE_SSE</span>};</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">static</span> <span class="cm-keyword">const</span> <span class="cm-variable">std::vector</span><span class="cm-operator">&lt;</span><span class="cm-variable-3">double</span><span class="cm-operator">&gt;</span> <span class="cm-variable">limit_prices</span> <span class="cm-operator">=</span> {<span class="cm-number">11</span>, <span class="cm-number">15</span>, <span class="cm-number">20</span>};</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">static</span> <span class="cm-keyword">const</span> <span class="cm-variable">std::vector</span><span class="cm-operator">&lt;</span><span class="cm-variable">int64_t</span><span class="cm-operator">&gt;</span> <span class="cm-variable">volumes</span> <span class="cm-operator">=</span> {<span class="cm-number">100</span>, <span class="cm-number">200</span>, <span class="cm-number">500</span>};</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">static</span> <span class="cm-keyword">const</span> <span class="cm-variable">std::vector</span><span class="cm-operator">&lt;</span><span class="cm-variable">PriceType</span><span class="cm-operator">&gt;</span> <span class="cm-variable">types</span> <span class="cm-operator">=</span> {<span class="cm-variable">PriceType::Limit</span>, <span class="cm-variable">PriceType::Any</span>, <span class="cm-variable">PriceType::Fak</span>};</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">static</span> <span class="cm-keyword">const</span> <span class="cm-variable">std::vector</span><span class="cm-operator">&lt;</span><span class="cm-variable">Side</span><span class="cm-operator">&gt;</span> <span class="cm-variable">sides</span> <span class="cm-operator">=</span> {<span class="cm-variable">Side::Buy</span>, <span class="cm-variable">Side::Sell</span>, <span class="cm-variable">Side::Buy</span>};</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">static</span> <span class="cm-keyword">const</span> <span class="cm-variable">std::vector</span><span class="cm-operator">&lt;</span><span class="cm-variable">Offset</span><span class="cm-operator">&gt;</span> <span class="cm-variable">offsets</span> <span class="cm-operator">=</span> {<span class="cm-variable">Offset::Open</span>, <span class="cm-variable">Offset::Close</span>, <span class="cm-variable">Offset::Open</span>};</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">static</span> <span class="cm-keyword">const</span> <span class="cm-variable">std::vector</span><span class="cm-operator">&lt;</span><span class="cm-variable">HedgeFlag</span><span class="cm-operator">&gt;</span> <span class="cm-variable">hedge_flags</span> <span class="cm-operator">=</span> {<span class="cm-variable">HedgeFlag::Speculation</span>, <span class="cm-variable">HedgeFlag::Speculation</span>, <span class="cm-variable">HedgeFlag::Speculation</span>};</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">static</span> <span class="cm-keyword">const</span> <span class="cm-variable">std::vector</span><span class="cm-operator">&lt;</span><span class="cm-variable-3">bool</span><span class="cm-operator">&gt;</span> <span class="cm-variable">is_swaps</span> <span class="cm-operator">=</span> {<span class="cm-atom">false</span>, <span class="cm-atom">false</span>, <span class="cm-atom">false</span>};</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">auto</span> <span class="cm-variable">order_ids</span> <span class="cm-operator">=</span> <span class="cm-variable">context</span><span class="cm-operator">-&gt;</span><span class="cm-variable">insert_batch_orders</span>(<span class="cm-variable">source</span>, <span class="cm-variable">account</span>, <span class="cm-variable">instrument_ids</span>, <span class="cm-variable">exchange_ids</span>, <span class="cm-variable">limit_prices</span>, <span class="cm-variable">volumes</span>, <span class="cm-variable">types</span>, <span class="cm-variable">sides</span>, <span class="cm-variable">offsets</span>, <span class="cm-variable">hedge_flags</span>, <span class="cm-variable">is_swaps</span>);</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 364px;"></div><div class="CodeMirror-gutters" style="display: none; height: 364px;"></div></div></div></pre></blockquote><p><strong><span>注（期权）：当买卖方向为：Lock（锁仓）、Unlock（解锁）、Exec（行权）、Drop（放弃行权）时，设定的price（委托价）以及offset（开平方向）都不生效</span></strong></p><h4><a name="ontextcancelorder" class="md-header-anchor"></a><span>ontext.cancel_order</span></h4><p><span>	</span><span>撤单函数</span></p><p><span>参数</span></p><figure><table><thead><tr><th><span>参数</span></th><th><span>类型</span></th><th><span>说明</span></th></tr></thead><tbody><tr><td><span>order_id</span></td><td><span>long</span></td><td><span>订单ID</span></td></tr></tbody></table></figure><p><span>返回</span></p><figure><table><thead><tr><th><span>返回</span></th><th><span>类型</span></th><th><span>说明</span></th></tr></thead><tbody><tr><td><span>action_id</span></td><td><span>long</span></td><td><span>订单操作</span></td></tr></tbody></table></figure><p><span>范例:</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="python"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="python"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-builtin">int</span> <span class="cm-variable">action_id</span> = <span class="cm-variable">context</span><span class="cm-operator">-&gt;</span><span class="cm-variable">cancel_order</span>(<span class="cm-variable">oid</span>);</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 26px;"></div><div class="CodeMirror-gutters" style="display: none; height: 26px;"></div></div></div></pre><h3><a name="辅助函数" class="md-header-anchor"></a><span>辅助函数</span></h3><h4><a name="输出info级别-log-信息" class="md-header-anchor"></a><span>输出INFO级别 Log 信息</span></h4><figure><table><thead><tr><th><span>参数</span></th><th><span>类型</span></th><th><span>说明</span></th></tr></thead><tbody><tr><td><span>msg</span></td><td><span>str</span></td><td><span>Log信息</span></td></tr></tbody></table></figure><p><span>返回</span></p><figure><table><thead><tr><th><span>返回</span></th><th><span>类型</span></th><th><span>说明</span></th></tr></thead><tbody><tr><td><span>无</span></td><td><span>无</span></td><td><span>无</span></td></tr></tbody></table></figure><p><span>范例:</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="python"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="python"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">SPDLOG_INFO</span>(<span class="cm-variable">msg</span>);</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 26px;"></div><div class="CodeMirror-gutters" style="display: none; height: 26px;"></div></div></div></pre><h4><a name="contextaddtimer" class="md-header-anchor"></a><span>context.add_timer</span></h4><p><span>	</span><span>注册时间回调函数</span></p><p><span>参数</span></p><figure><table><thead><tr><th><span>参数</span></th><th><span>类型</span></th><th><span>说明</span></th></tr></thead><tbody><tr><td><span>nano</span></td><td><span>long</span></td><td><span>触发回调的纳秒时间戳</span></td></tr><tr><td><span>callback</span></td><td><span>object</span></td><td><span>回调函数</span></td></tr></tbody></table></figure><p><span>返回</span></p><figure><table><thead><tr><th><span>返回</span></th><th><span>类型</span></th><th><span>说明</span></th></tr></thead><tbody><tr><td><span>无</span></td><td><span>无</span></td><td><span>无</span></td></tr></tbody></table></figure><p><span>范例:</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="python"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="python"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">context</span><span class="cm-operator">-&gt;</span><span class="cm-variable">add_timer</span>(<span class="cm-number">1e6</span>,[<span class="cm-variable">context</span>,<span class="cm-variable">order_id</span>](<span class="cm-variable">kungfu</span>::<span class="cm-variable">event_ptr</span> <span class="cm-variable">e</span>){</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-builtin">int</span> <span class="cm-variable">action_id</span> = <span class="cm-variable">context</span><span class="cm-operator">-&gt;</span><span class="cm-variable">cancel_order</span>(<span class="cm-variable">order_id</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">std</span>::<span class="cm-variable">cout</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">“action_id”</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">action_id</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">std</span>::<span class="cm-variable">endl</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">});</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 104px;"></div><div class="CodeMirror-gutters" style="display: none; height: 104px;"></div></div></div></pre><h4><a name="contextaddtimeinterval" class="md-header-anchor"></a><span>context.add_time_interval</span></h4><p><span>	</span><span>时间间隔回调函数</span></p><p><span>参数</span></p><figure><table><thead><tr><th><span>参数</span></th><th><span>类型</span></th><th><span>说明</span></th></tr></thead><tbody><tr><td><span>nano</span></td><td><span>long</span></td><td><span>触发回调的纳秒时间戳</span></td></tr><tr><td><span>callback</span></td><td><span>object</span></td><td><span>回调函数</span></td></tr></tbody></table></figure><p><span>返回</span></p><figure><table><thead><tr><th><span>返回</span></th><th><span>类型</span></th><th><span>说明</span></th></tr></thead><tbody><tr><td><span>无</span></td><td><span>无</span></td><td><span>无</span></td></tr></tbody></table></figure><p><span>范例:</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="python"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="python"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">context</span><span class="cm-operator">-&gt;</span><span class="cm-variable">add_time_interval</span>(<span class="cm-number">1e6</span>,[<span class="cm-operator">&amp;</span>](<span class="cm-variable">kungfu</span>::<span class="cm-variable">event_ptr</span> <span class="cm-variable">e</span>){</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">std</span>::<span class="cm-variable">cout</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">“调用add_time_interval</span> <span class="cm-variable">函数”</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">std</span>::<span class="cm-variable">endl</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">});</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 78px;"></div><div class="CodeMirror-gutters" style="display: none; height: 78px;"></div></div></div></pre><h3><a name="账户的投资组合" class="md-header-anchor"></a><span>账户的投资组合</span></h3><figure><table><thead><tr><th><span>类型</span></th></tr></thead><tbody><tr><td><span>book对象</span></td></tr></tbody></table></figure><p><span>范例:</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="c++"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="c++"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">auto</span> <span class="cm-operator">&amp;</span><span class="cm-variable">runtime</span> <span class="cm-operator">=</span> <span class="cm-keyword">dynamic_cast</span><span class="cm-operator">&lt;</span><span class="cm-variable">RuntimeContext</span> <span class="cm-operator">&amp;&gt;</span>(<span class="cm-operator">*</span><span class="cm-variable">context</span>);</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">auto</span> <span class="cm-operator">&amp;</span><span class="cm-variable">bookkeeper</span> <span class="cm-operator">=</span> <span class="cm-variable">runtime</span>.<span class="cm-variable">get_bookkeeper</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">auto</span> <span class="cm-operator">&amp;</span><span class="cm-variable">books</span> <span class="cm-operator">=</span> <span class="cm-variable">bookkeeper</span>.<span class="cm-variable">get_books</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">for</span> (<span class="cm-keyword">const</span> <span class="cm-keyword">auto</span> <span class="cm-operator">&amp;</span><span class="cm-variable">pair</span> : <span class="cm-variable">books</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;<span class="cm-keyword">auto</span> <span class="cm-operator">&amp;</span><span class="cm-variable">book</span> <span class="cm-operator">=</span> <span class="cm-variable">pair</span>.<span class="cm-variable">second</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;<span class="cm-variable">SPDLOG_INFO</span>(<span class="cm-string">"book asset: {}"</span>, <span class="cm-variable">book</span><span class="cm-operator">-&gt;</span><span class="cm-variable">asset</span>.<span class="cm-variable">to_string</span>());</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  }</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 208px;"></div><div class="CodeMirror-gutters" style="display: none; height: 208px;"></div></div></div></pre><h3><a name="" class="md-header-anchor"></a></h3><h2><a name="常量定义" class="md-header-anchor"></a><span>常量定义</span></h2><h3><a name="source柜台" class="md-header-anchor"></a><span>Source柜台</span></h3><figure><table><thead><tr><th><span>属性</span></th><th><span>值</span></th><th><span>说明</span></th></tr></thead><tbody><tr><td><span>CTP</span></td><td><span>“ctp“</span></td><td><span>CTP柜台</span></td></tr><tr><td><span>XTP</span></td><td><span>“xtp“</span></td><td><span>XTP柜台</span></td></tr><tr><td><span>SIM</span></td><td><span>“sim“</span></td><td><span>SIM柜台</span></td></tr></tbody></table></figure><p><span>柜台使用方法</span></p><blockquote><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="python"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="python"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">std</span>::<span class="cm-variable">string</span> <span class="cm-variable">SOURCE</span> = <span class="cm-variable">“xtp”</span>;</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">std</span>::<span class="cm-variable">string</span> <span class="cm-variable">ACCOUNT</span> = <span class="cm-string">"1111111"</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">void</span> <span class="cm-variable">pre_start</span>(<span class="cm-variable">Context_ptr</span> <span class="cm-operator">&amp;</span><span class="cm-variable">context</span>) <span class="cm-variable">override</span> {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">context</span><span class="cm-operator">-&gt;</span><span class="cm-variable">add_account</span>(<span class="cm-variable">SOURCE</span>, <span class="cm-variable">ACCOUNT</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">};</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 156px;"></div><div class="CodeMirror-gutters" style="display: none; height: 156px;"></div></div></div></pre></blockquote><p>&nbsp;</p><h3><a name="exchange交易所" class="md-header-anchor"></a><span>Exchange交易所</span></h3><figure><table><thead><tr><th><span>属性</span></th><th><span>值</span></th><th><span>说明</span></th></tr></thead><tbody><tr><td><span>BSE</span></td><td><span>&quot;BSE&quot;</span></td><td><span>北交所</span></td></tr><tr><td><span>SSE</span></td><td><span>“SSE”</span></td><td><span>上交所</span></td></tr><tr><td><span>SZE</span></td><td><span>“SZE”</span></td><td><span>深交所</span></td></tr><tr><td><span>SHFE</span></td><td><span>“SHFE”</span></td><td><span>上期所</span></td></tr><tr><td><span>DCE</span></td><td><span>“DCE”</span></td><td><span>大商所</span></td></tr><tr><td><span>CZCE</span></td><td><span>“CZCE”</span></td><td><span>郑商所</span></td></tr><tr><td><span>CFFEX</span></td><td><span>“CFFEX”</span></td><td><span>中金所</span></td></tr><tr><td><span>INE</span></td><td><span>“INE”</span></td><td><span>能源中心</span></td></tr></tbody></table></figure><p><span>交易所使用方法</span></p><blockquote><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="python"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="python"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">std</span>::<span class="cm-variable">string</span> <span class="cm-variable">EXCHANGE</span> = <span class="cm-variable">“SSE”</span> ;</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 26px;"></div><div class="CodeMirror-gutters" style="display: none; height: 26px;"></div></div></div></pre></blockquote><h3><a name="instrumenttype-代码类型" class="md-header-anchor"></a><span>InstrumentType 代码类型</span></h3><figure><table><thead><tr><th><span>属性</span></th><th><span>说明</span></th></tr></thead><tbody><tr><td><span>Unknown</span></td><td><span>未知</span></td></tr><tr><td><span>Stock</span></td><td><span>股票</span></td></tr><tr><td><span>Future</span></td><td><span>期货</span></td></tr><tr><td><span>Bond</span></td><td><span>债券</span></td></tr><tr><td><span>StockOption</span></td><td><span>股票期权</span></td></tr><tr><td><span>TechStock</span></td><td><span>科技股</span></td></tr><tr><td><span>Fund</span></td><td><span>基金</span></td></tr><tr><td><span>Index</span></td><td><span>指数</span></td></tr><tr><td><span>Repo</span></td><td><span>回购</span></td></tr><tr><td><span>Warrant</span></td><td><span>认权证</span></td></tr><tr><td><span>Iopt</span></td><td><span>牛熊证</span></td></tr><tr><td><span>Crypto</span></td><td><span>数字货币</span></td></tr></tbody></table></figure><h3><a name="pricetype-报单类型" class="md-header-anchor"></a><span>PriceType 报单类型</span></h3><figure><table><thead><tr><th><span>属性</span></th><th><span>说明</span></th></tr></thead><tbody><tr><td><span>Limit</span></td><td><span>限价,通用</span></td></tr><tr><td><span>Any</span></td><td><span>市价，通用，对于股票上海为最优五档剩余撤销，深圳为即时成交剩余撤销</span></td></tr><tr><td><span>FakBest5</span></td><td><span>上海深圳最优五档即时成交剩余撤销，不需要报价</span></td></tr><tr><td><span>ForwardBest</span></td><td><span>仅深圳本方方最优价格申报, 不需要报价</span></td></tr><tr><td><span>ReverseBest</span></td><td><span>上海最优五档即时成交剩余转限价，深圳对手方最优价格申报，不需要报价</span></td></tr><tr><td><span>Fak</span></td><td><span>股票（仅深圳）即时成交剩余撤销，不需要报价；期货即时成交剩余撤销，需要报价</span></td></tr><tr><td><span>Fok</span></td><td><span>股票（仅深圳）市价全额成交或者撤销，不需要报价；期货全部或撤销，需要报价</span></td></tr></tbody></table></figure><h3><a name="side-买卖" class="md-header-anchor"></a><span>Side 买卖</span></h3><figure><table><thead><tr><th><span>属性</span></th><th><span>说明</span></th></tr></thead><tbody><tr><td><span>Buy</span></td><td><span>买</span></td></tr><tr><td><span>Sell</span></td><td><span>卖</span></td></tr><tr><td><span>Lock</span></td><td><span>锁仓</span></td></tr><tr><td><span>Unlock</span></td><td><span>解锁</span></td></tr><tr><td><span>Exec</span></td><td><span>行权</span></td></tr><tr><td><span>Drop</span></td><td><span>放弃行权</span></td></tr><tr><td><span>Purchase</span></td><td><span>申购</span></td></tr><tr><td><span>Redemption</span></td><td><span>赎回</span></td></tr><tr><td><span>Split</span></td><td><span>拆分</span></td></tr><tr><td><span>Merge</span></td><td><span>合并</span></td></tr><tr><td><span>MarginTrade</span></td><td><span>融资买入</span></td></tr><tr><td><span>ShortSell</span></td><td><span>融券卖出</span></td></tr><tr><td><span>RepayMargin</span></td><td><span>卖券还款</span></td></tr><tr><td><span>RepayStock</span></td><td><span>买券还券</span></td></tr><tr><td><span>CashRepayMargin</span></td><td><span>现金还款</span></td></tr><tr><td><span>StockRepayStock</span></td><td><span>现券还券</span></td></tr><tr><td><span>SurplusStockTransfer</span></td><td><span>余券划转</span></td></tr><tr><td><span>GuaranteeStockTransferIn</span></td><td><span>担保品转入</span></td></tr><tr><td><span>GuaranteeStockTransferOut</span></td><td><span>担保品转出</span></td></tr></tbody></table></figure><h3><a name="offset-开平" class="md-header-anchor"></a><span>Offset 开平</span></h3><figure><table><thead><tr><th><span>属性</span></th><th><span>说明</span></th></tr></thead><tbody><tr><td><span>Open</span></td><td><span>开</span></td></tr><tr><td><span>Close</span></td><td><span>平</span></td></tr><tr><td><span>CloseToday</span></td><td><span>平今</span></td></tr><tr><td><span>CloseYesterday</span></td><td><span>平昨</span></td></tr></tbody></table></figure><h3><a name="hedgeflag-投机套保标识" class="md-header-anchor"></a><span>HedgeFlag 投机套保标识</span></h3><figure><table><thead><tr><th><span>属性</span></th><th><span>说明</span></th></tr></thead><tbody><tr><td><span>Speculation</span></td><td><span>投机</span></td></tr></tbody></table></figure><h3><a name="isswap对象-是否为互换单" class="md-header-anchor"></a><span>IsSwap对象 是否为互换单</span></h3><figure><table><thead><tr><th><span>属性</span></th><th><span>说明</span></th></tr></thead><tbody><tr><td><span>true</span></td><td><span>互换单</span></td></tr><tr><td><span>false</span></td><td><span>不是互换单</span></td></tr></tbody></table></figure><p>&nbsp;</p><h3><a name="direction-多空" class="md-header-anchor"></a><span>Direction 多空</span></h3><figure><table><thead><tr><th><span>属性</span></th><th><span>说明</span></th></tr></thead><tbody><tr><td><span>Long</span></td><td><span>多</span></td></tr><tr><td><span>Short</span></td><td><span>空</span></td></tr></tbody></table></figure><h3><a name="orderstatus-委托状态" class="md-header-anchor"></a><span>OrderStatus 委托状态</span></h3><figure><table><thead><tr><th><span>属性</span></th><th><span>说明</span></th></tr></thead><tbody><tr><td><span>Unknown</span></td><td><span>未知</span></td></tr><tr><td><span>Submitted</span></td><td><span>已提交</span></td></tr><tr><td><span>Pending</span></td><td><span>等待</span></td></tr><tr><td><span>Cancelled</span></td><td><span>已撤单</span></td></tr><tr><td><span>Error</span></td><td><span>错误</span></td></tr><tr><td><span>Filled</span></td><td><span>已成交</span></td></tr><tr><td><span>PartialFilledNotActive</span></td><td><span>部分成交不在队列中（部成部撤）</span></td></tr><tr><td><span>PartialFilledActive</span></td><td><span>部分成交还在队列中</span></td></tr></tbody></table></figure><h3><a name="exectype-标识" class="md-header-anchor"></a><span>ExecType 标识</span></h3><figure><table><thead><tr><th><span>属性</span></th><th><span>说明</span></th></tr></thead><tbody><tr><td><span>Unknown</span></td><td><span>未知</span></td></tr><tr><td><span>Cancel</span></td><td><span>撤单</span></td></tr><tr><td><span>Trade</span></td><td><span>成交</span></td></tr></tbody></table></figure><p>&nbsp;</p><h3><a name="bsflag-标识" class="md-header-anchor"></a><span>BsFlag 标识</span></h3><figure><table><thead><tr><th><span>属性</span></th><th><span>说明</span></th></tr></thead><tbody><tr><td><span>Unknown</span></td><td><span>未知</span></td></tr><tr><td><span>Buy</span></td><td><span>买</span></td></tr><tr><td><span>Sell</span></td><td><span>卖</span></td></tr></tbody></table></figure><p>&nbsp;</p><h3><a name="ledgercategory-标识" class="md-header-anchor"></a><span>LedgerCategory 标识</span></h3><figure><table><thead><tr><th><span>属性</span></th><th><span>说明</span></th></tr></thead><tbody><tr><td><span>Account</span></td><td><span>账户投资组合数据</span></td></tr><tr><td><span>Strategy</span></td><td><span>策略投资组合数据</span></td></tr></tbody></table></figure><p>&nbsp;</p><h3><a name="location-标识" class="md-header-anchor"></a><span>Location 标识</span></h3><figure><table><thead><tr><th><span>属性</span></th><th><span>说明</span></th></tr></thead><tbody><tr><td><span>mode</span></td><td><span>交易规则(目前只支持 LIVE,实时交易)</span></td></tr><tr><td><span>category</span></td><td><span>类别(TD/MD)</span></td></tr><tr><td><span>group</span></td><td><span>柜台id</span></td></tr><tr><td><span>name</span></td><td><span>对于交易进程是账户名 , 对于行情进程是柜台id</span></td></tr><tr><td><span>uid</span></td><td><span>mode/category/group/name 组成的字符串的哈希值</span></td></tr></tbody></table></figure><p>&nbsp;</p><h2><a name="数据结构" class="md-header-anchor"></a><span>数据结构</span></h2><p>&nbsp;</p><h3><a name="quote-行情信息" class="md-header-anchor"></a><span>Quote 行情信息</span></h3><figure><table><thead><tr><th><span>属性</span></th><th><span>类型</span></th><th><span>说明</span></th></tr></thead><tbody><tr><td><span>trading_day</span></td><td><span>str</span></td><td><span>交易日</span></td></tr><tr><td><span>data_time</span></td><td><span>long</span></td><td><span>数据生成时间(交易所时间)</span></td></tr><tr><td><span>instrument_id</span></td><td><span>str</span></td><td><span>合约ID</span></td></tr><tr><td><span>exchange_id</span></td><td><span>str</span></td><td><span>交易所</span></td></tr><tr><td><span>instrument_type</span></td><td><span>str</span></td><td><span>合约类型</span></td></tr><tr><td><span>pre_close_price</span></td><td><span>float</span></td><td><span>昨收价</span></td></tr><tr><td><span>pre_settlement_price</span></td><td><span>float</span></td><td><span>昨结价</span></td></tr><tr><td><span>last_price</span></td><td><span>float</span></td><td><span>最新价</span></td></tr><tr><td><span>volume</span></td><td><span>int</span></td><td><span>数量</span></td></tr><tr><td><span>turnover</span></td><td><span>float</span></td><td><span>成交金额</span></td></tr><tr><td><span>pre_open_interest</span></td><td><span>float</span></td><td><span>昨持仓量</span></td></tr><tr><td><span>open_interest</span></td><td><span>float</span></td><td><span>持仓量</span></td></tr><tr><td><span>open_price</span></td><td><span>float</span></td><td><span>今开盘</span></td></tr><tr><td><span>high_price</span></td><td><span>float</span></td><td><span>最高价</span></td></tr><tr><td><span>low_price</span></td><td><span>float</span></td><td><span>最低价</span></td></tr><tr><td><span>upper_limit_price</span></td><td><span>float</span></td><td><span>涨停板价</span></td></tr><tr><td><span>lower_limit_price</span></td><td><span>float</span></td><td><span>跌停板价</span></td></tr><tr><td><span>close_price</span></td><td><span>float</span></td><td><span>收盘价</span></td></tr><tr><td><span>settlement_price</span></td><td><span>float</span></td><td><span>结算价</span></td></tr><tr><td><span>iopv</span></td><td><span>float</span></td><td><span>基金实时参考净值</span></td></tr><tr><td><span>bid_price</span></td><td><span>list of float</span></td><td><span>申买价</span></td></tr><tr><td><span>ask_price</span></td><td><span>list of float</span></td><td><span>申卖价</span></td></tr><tr><td><span>bid_volume</span></td><td><span>list of float</span></td><td><span>申买量</span></td></tr><tr><td><span>ask_volume</span></td><td><span>list of float</span></td><td><span>申卖量</span></td></tr><tr><td><span>trading_phase_code</span></td><td><span>str</span></td><td><span>交易</span></td></tr></tbody></table></figure><p>&nbsp;</p><h3><a name="entrust-逐笔委托" class="md-header-anchor"></a><span>Entrust 逐笔委托</span></h3><figure><table><thead><tr><th><span>属性</span></th><th><span>类型</span></th><th><span>说明</span></th></tr></thead><tbody><tr><td><span>trading_day</span></td><td><span>str</span></td><td><span>交易日</span></td></tr><tr><td><span>data_time</span></td><td><span>long</span></td><td><span>数据生成时间(交易所时间)</span></td></tr><tr><td><span>instrument_id</span></td><td><span>str</span></td><td><span>合约ID</span></td></tr><tr><td><span>exchange_id</span></td><td><span>str</span></td><td><span>交易所</span></td></tr><tr><td><span>instrument_type</span></td><td><span>str</span></td><td><span>合约类型</span></td></tr><tr><td><span>price</span></td><td><span>float</span></td><td><span>委托价格</span></td></tr><tr><td><span>volume</span></td><td><span>int</span></td><td><span>委托量</span></td></tr><tr><td><span>side</span></td><td><span>Side</span></td><td><span>委托方向</span></td></tr><tr><td><span>price_type</span></td><td><span>PriceType对象</span></td><td><span>订单价格类型（市价、限价、本方最优）</span></td></tr><tr><td><span>main_seq</span></td><td><span>long</span></td><td><span>主序号</span></td></tr><tr><td><span>seq</span></td><td><span>long</span></td><td><span>子序号</span></td></tr><tr><td><span>biz_index</span></td><td><span>int</span></td><td><span>业务序号</span></td></tr></tbody></table></figure><p>&nbsp;</p><h3><a name="transaction-逐笔成交" class="md-header-anchor"></a><span>Transaction 逐笔成交</span></h3><figure><table><thead><tr><th><span>属性</span></th><th><span>类型</span></th><th><span>说明</span></th></tr></thead><tbody><tr><td><span>trading_day</span></td><td><span>str</span></td><td><span>交易日</span></td></tr><tr><td><span>data_time</span></td><td><span>long</span></td><td><span>数据生成时间(交易所时间)</span></td></tr><tr><td><span>instrument_id</span></td><td><span>str</span></td><td><span>合约ID</span></td></tr><tr><td><span>exchange_id</span></td><td><span>str</span></td><td><span>交易所</span></td></tr><tr><td><span>instrument_type</span></td><td><span>str</span></td><td><span>合约类型</span></td></tr><tr><td><span>price</span></td><td><span>float</span></td><td><span>成交价</span></td></tr><tr><td><span>volume</span></td><td><span>int</span></td><td><span>成交量</span></td></tr><tr><td><span>bid_no</span></td><td><span>long</span></td><td><span>买方订单号</span></td></tr><tr><td><span>ask_no</span></td><td><span>long</span></td><td><span>卖方订单号</span></td></tr><tr><td><span>exec_type</span></td><td><span>ExecType对象</span></td><td><span>SZ: 成交标识</span></td></tr><tr><td><span>bs_flag</span></td><td><span>BsFlag对象</span></td><td><span>SH: 内外盘标识</span></td></tr><tr><td><span>main_seq</span></td><td><span>long</span></td><td><span>主序号</span></td></tr><tr><td><span>seq</span></td><td><span>long</span></td><td><span>子序号</span></td></tr><tr><td><span>biz_index</span></td><td><span>int</span></td><td><span>业务序号</span></td></tr></tbody></table></figure><p>&nbsp;</p><h3><a name="order-订单回报" class="md-header-anchor"></a><span>Order 订单回报</span></h3><figure><table><thead><tr><th><span>属性</span></th><th><span>类型</span></th><th><span>说明</span></th></tr></thead><tbody><tr><td><span>order_id</span></td><td><span>long</span></td><td><span>订单ID</span></td></tr><tr><td><span>insert_time</span></td><td><span>long</span></td><td><span>订单写入时间(功夫时间)</span></td></tr><tr><td><span>update_time</span></td><td><span>long</span></td><td><span>订单更新时间(功夫时间)</span></td></tr><tr><td><span>trading_day</span></td><td><span>str</span></td><td><span>交易日</span></td></tr><tr><td><span>instrument_id</span></td><td><span>str</span></td><td><span>合约ID</span></td></tr><tr><td><span>exchange_id</span></td><td><span>str</span></td><td><span>交易所ID</span></td></tr><tr><td><span>external_id</span></td><td><span>int</span></td><td><span>柜台订单id</span></td></tr><tr><td><span>instrument_type</span></td><td><span>str</span></td><td><span>合约类型</span></td></tr><tr><td><span>limit_price</span></td><td><span>float</span></td><td><span>价格</span></td></tr><tr><td><span>frozen_price</span></td><td><span>float</span></td><td><span>冻结价格（市价单冻结价格为0.0）</span></td></tr><tr><td><span>volume</span></td><td><span>int</span></td><td><span>数量</span></td></tr><tr><td><span>volume_left</span></td><td><span>int</span></td><td><span>剩余数量</span></td></tr><tr><td><span>tax</span></td><td><span>float</span></td><td><span>税</span></td></tr><tr><td><span>commission</span></td><td><span>float</span></td><td><span>手续费</span></td></tr><tr><td><span>status</span></td><td><span>OrderStatus对象</span></td><td><span>订单状态</span></td></tr><tr><td><span>error_id</span></td><td><span>int</span></td><td><span>错误ID</span></td></tr><tr><td><span>error_msg</span></td><td><span>str</span></td><td><span>错误信息</span></td></tr><tr><td><span>is_swap</span></td><td><span>bool</span></td><td><span>互换单</span></td></tr><tr><td><span>side</span></td><td><span>str</span></td><td><span>买卖方向</span></td></tr><tr><td><span>offset</span></td><td><span>str</span></td><td><span>开平方向</span></td></tr><tr><td><span>hedge_flag</span></td><td><span>HedgeFlag对象</span></td><td><span>投机套保标识</span></td></tr><tr><td><span>price_type</span></td><td><span>str</span></td><td><span>价格类型</span></td></tr><tr><td><span>volume_condition</span></td><td><span>str</span></td><td><span>成交量类型</span></td></tr><tr><td><span>time_condition</span></td><td><span>str</span></td><td><span>成交时间类型</span></td></tr></tbody></table></figure><p>&nbsp;</p><h3><a name="trade-订单成交" class="md-header-anchor"></a><span>Trade 订单成交</span></h3><figure><table><thead><tr><th><span>属性</span></th><th><span>类型</span></th><th><span>说明</span></th></tr></thead><tbody><tr><td><span>trade_id</span></td><td><span>long</span></td><td><span>成交ID</span></td></tr><tr><td><span>order_id</span></td><td><span>long</span></td><td><span>订单ID</span></td></tr><tr><td><span>trade_time</span></td><td><span>long</span></td><td><span>成交时间(功夫时间)</span></td></tr><tr><td><span>trading_day</span></td><td><span>str</span></td><td><span>交易日</span></td></tr><tr><td><span>instrument_id</span></td><td><span>str</span></td><td><span>合约ID</span></td></tr><tr><td><span>exchange_id</span></td><td><span>str</span></td><td><span>交易所ID</span></td></tr><tr><td><span>external_id</span></td><td><span>int</span></td><td><span>柜台订单id</span></td></tr><tr><td><span>instrument_type</span></td><td><span>str</span></td><td><span>合约类型</span></td></tr><tr><td><span>side</span></td><td><span>str</span></td><td><span>买卖方向</span></td></tr><tr><td><span>offset</span></td><td><span>str</span></td><td><span>开平方向</span></td></tr><tr><td><span>hedge_flag</span></td><td><span>HedgeFlag对象</span></td><td><span>投机套保标识</span></td></tr><tr><td><span>price</span></td><td><span>float</span></td><td><span>成交价格</span></td></tr><tr><td><span>volume</span></td><td><span>int</span></td><td><span>成交量</span></td></tr><tr><td><span>tax</span></td><td><span>float</span></td><td><span>税</span></td></tr><tr><td><span>commission</span></td><td><span>float</span></td><td><span>手续费</span></td></tr></tbody></table></figure><p><strong><span>注意:功夫时间在最开始会以真实时间对时，然后根据cpu震动++，是个单调递增的时间，和真实时间是有差别的。交易所时间和本机时间也会有差别</span></strong></p><h3><a name="utils" class="md-header-anchor"></a><span>Utils</span></h3><figure><table><thead><tr><th><span>属性</span></th><th><span>类型</span></th><th><span>说明</span></th></tr></thead><tbody><tr><td><span>hash_instrument</span></td><td><span>long</span></td><td><span>持仓列表中的key值</span></td></tr><tr><td><span>is_valid_price</span></td><td><span>bool</span></td><td><span>判断当前价格是否为有效价格</span></td></tr><tr><td><span>is_final_status</span></td><td><span>bool</span></td><td><span>判断当前状态是否为最终状态</span></td></tr><tr><td><span>get_instrument_type</span></td><td><span>InstrumentType对象</span></td><td><span>获取类型</span></td></tr></tbody></table></figure><p><span>Utils范例</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="python"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="python"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">kungfu</span>::<span class="cm-variable">wingchun</span>::<span class="cm-variable">hash_instrument</span>(<span class="cm-variable">EXCHANGE</span>.<span class="cm-property">c_str</span>(),<span class="cm-variable">’600000’</span>);</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable cm-error">kungfu</span>::<span class="cm-variable">wingchun</span>::<span class="cm-variable">is_valid_price</span>(<span class="cm-number">10</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable cm-error">kungfu</span>::<span class="cm-variable">wingchun</span>::<span class="cm-variable">is_final_status</span>(<span class="cm-variable">order</span>.<span class="cm-property">status</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable cm-error">kungfu</span>::<span class="cm-variable">wingchun</span>::<span class="cm-variable">get_instrument_type</span>(<span class="cm-variable">EXCHANGE</span>.<span class="cm-property">c_str</span>(),<span class="cm-variable">’600000’</span>); </span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 182px;"></div><div class="CodeMirror-gutters" style="display: none; height: 182px;"></div></div></div></pre><h3><a name="book-asset-投资组合资金信息" class="md-header-anchor"></a><span>Book-&gt;asset 投资组合资金信息</span></h3><figure><table><thead><tr><th><span>属性</span></th><th><span>类型</span></th><th><span>说明</span></th></tr></thead><tbody><tr><td><span>update_time</span></td><td><span>int</span></td><td><span>更新时间(功夫时间)</span></td></tr><tr><td><span>trading_day</span></td><td><span>str</span></td><td><span>交易日</span></td></tr><tr><td><span>holder_uid</span></td><td><span>int</span></td><td><span>持有人id</span></td></tr><tr><td><span>ledger_category</span></td><td><span>LedgerCategory对象</span></td><td><span>账户类别</span></td></tr><tr><td><span>initial_equity</span></td><td><span>float</span></td><td><span>期初权益</span></td></tr><tr><td><span>static_equity</span></td><td><span>float</span></td><td><span>静态权益</span></td></tr><tr><td><span>dynamic_equity</span></td><td><span>float</span></td><td><span>动态权益</span></td></tr><tr><td><span>realized_pnl</span></td><td><span>float</span></td><td><span>累计收益</span></td></tr><tr><td><span>unrealized_pnl</span></td><td><span>float</span></td><td><span>未实现盈亏</span></td></tr><tr><td><span>avail</span></td><td><span>float</span></td><td><span>可用资金</span></td></tr><tr><td><span>market_value</span></td><td><span>float</span></td><td><span>市值(股票)</span></td></tr><tr><td><span>margin</span></td><td><span>float</span></td><td><span>保证金(期货)</span></td></tr><tr><td><span>accumulated_fee</span></td><td><span>float</span></td><td><span>累计手续费</span></td></tr><tr><td><span>intraday_fee</span></td><td><span>float</span></td><td><span>当日手续费</span></td></tr><tr><td><span>frozen_cash</span></td><td><span>float</span></td><td><span>冻结资金(股票: 买入挂单资金), 期货: 冻结保证金+冻结手续费)</span></td></tr><tr><td><span>frozen_margin</span></td><td><span>float</span></td><td><span>冻结保证金(期货)</span></td></tr><tr><td><span>frozen_fee</span></td><td><span>float</span></td><td><span>冻结手续费(期货)</span></td></tr><tr><td><span>position_pnl</span></td><td><span>float</span></td><td><span>持仓盈亏(期货)</span></td></tr><tr><td><span>close_pnl</span></td><td><span>float</span></td><td><span>平仓盈亏(期货)</span></td></tr></tbody></table></figure><p>&nbsp;</p><p>&nbsp;</p></div>
+</body>
+</html>
